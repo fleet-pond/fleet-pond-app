@@ -8,7 +8,7 @@ To install locally using NPM
 
 Firstly do a GIT Checkout
 
-`git clone https://github.com/dickydoouk/fleet-pond-app.git`
+`git clone https://github.com/fleet-pond/fleet-pond-app.git`
 
 Do an NPM update
 
