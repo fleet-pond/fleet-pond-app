@@ -14,9 +14,9 @@ Do an NPM update
 
 `npm update`
 
-Add Browser Platform (Used to test app in web browser)
+Get the Cordova package
 
-`cordova platform add browser`
+`npm install -g cordova`
 
 Then to see your results. Run
 
