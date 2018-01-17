@@ -63,3 +63,37 @@ html,body{
     max-width: 100%;
     max-height: 600px;
 }
+
+#points-of-interest {
+	padding-bottom: 12px;
+}
+
+#points-of-interest-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#points-of-interest-table td, #points-of-interest-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#points-of-interest-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#points-of-interest-table tr:nth-child(odd) {
+	background-color: white;
+}
+
+#points-of-interest-table tr:hover {
+	background-color: #ddd;
+}
+
+#points-of-interest-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f39c12;
+    color: white;
+}

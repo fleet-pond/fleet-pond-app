@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<!--link rel="stylesheet" href="http://fleetpond.org.uk/wp-content/themes/FleetPondTheme/css/main.css"-->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
 	
@@ -26,6 +26,23 @@
 		</div>
   </div>
   
+  <script>
+  $(function() {
+		$("#points-of-interest-table").append('<tbody><tr><th>#</th><th>Description</th></tr></tbody>');
+		$.getJSON( "../points-of-interest.json", {
+			format: "json"
+		}).done(function(json) {
+			for (var key in json){
+				var getKey = json[key];
+				getKey.forEach(function(item){
+					$("#points-of-interest-table tr:last").after('<tr><td>' + item.number + '</td><td>' + item.description + '</td></tr>');
+				});
+			}
+			
+		});
+	});
+  </script>
+  
   <nav class="navbar navbar-default">
 		  <div class="container-fluid">
 			<div class="navbar-header">
@@ -40,6 +57,7 @@
 				<ul class="nav navbar-nav pull-right">
 				  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
 				  <li><a data-toggle="tab" href="#map">Map</a></li>
+				  <li><a data-toggle="tab" href="#points-of-interest">Points of Interest</a></li>
 				  <li><a data-toggle="tab" href="#contact-us">Contact Us</a></li>
 				</ul>
 			</div>
@@ -68,8 +86,19 @@
 		
 		<div id="contact-us" class="tab-pane fade in">
 			  <h1>Contact Us</h1>
-			  
 		</div>
+		
+		<div id="points-of-interest" class="tab-pane fade in">
+			  <h1>Points of Interest</h1>
+			  
+			  <table id="points-of-interest-table">
+			  </table>
+		</div>
+		
+		<div>
+		
+		</div>
+		
 	</div>
 	
       <footer class="footer">
