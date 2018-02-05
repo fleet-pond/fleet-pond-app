@@ -42,6 +42,19 @@
         line-height: 30px;
         padding-left: 10px;
       }
+      #floating-panel1 {
+        position: absolute;
+        top: 10px;
+        right: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
     </style
   </head>
   <body>
@@ -49,10 +62,15 @@
       <input onclick="removeOverlay();" type=button value="Remove overlay">
       <input onclick="addOverlay();" type=button value="Restore overlay">
     </div>
+    <div id="floating-panel1">
+      <input onclick="removeLine();" type=button value="Remove line">
+      <input onclick="addLine();" type=button value="Restore line">
+    </div>
     <div id="map"></div>
     <script>
       var map;
       var pondMap;
+      var path01;
       
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -61,12 +79,20 @@
         });
                 
         var path01Coordinates = [
-          {lat: 51.2890, lng: -0.8260},
-          {lat: 51.2880, lng: -0.8250},
-          {lat: 51.2870, lng: -0.8260},
-          {lat: 51.2890, lng: -0.8250}
+          {lat: 51.291195, lng: -0.819446},
+          {lat: 51.291100, lng: -0.820077},
+          {lat: 51.290964, lng: -0.821073},
+          {lat: 51.290992, lng: -0.821477},
+          {lat: 51.290976, lng: -0.824767},
+          {lat: 51.290403, lng: -0.822849},
+          {lat: 51.289560, lng: -0.819904},
+          {lat: 51.290608, lng: -0.818623},
+          {lat: 51.290870, lng: -0.819405},
+          {lat: 51.290954, lng: -0.819507},
+          {lat: 51.291180, lng: -0.819342}
         ];
-        var path01 = new google.maps.Polyline({
+        
+        path01 = new google.maps.Polyline({
           path: path01Coordinates,
           geodesic: true,
           strokeColor: '#FF0000',
@@ -80,24 +106,33 @@
           east: -0.815100,
           west: -0.833800
         };
+        
         pondMap = new google.maps.GroundOverlay(
             'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
             imageBounds);
-        pondMap.setOpacity(0.6);
+        pondMap.setOpacity(0.7);
         pondMap.setMap(map);
         
         path01.setMap(map);
         
-
         
-      }
-        function addOverlay() {
-            pondMap.setMap(map);
-        }
+    }
+    function addOverlay() {
+        pondMap.setMap(map);
+    }
 
-        function removeOverlay() {
-            pondMap.setMap(null);
-        }
+    function removeOverlay() {
+        pondMap.setMap(null);
+    }
+    
+    function addLine() {
+        path01.setMap(map);
+    }
+
+    function removeLine() {
+      path01.setMap(null);
+    }
+    
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm98SdCiZnd-Gqt_Te-s3VnNbM7qBS1zE&callback=initMap"
     async defer></script>
