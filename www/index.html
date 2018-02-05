@@ -29,44 +29,48 @@
 </div>
 
 <script>
+
+  var poi;
+
   $(function() {
-		$("#points-of-interest-table").append('<tbody><tr><th>#</th><th>Description</th></tr></tbody>');
-		$.getJSON( "../points-of-interest.json", {
-			format: "json"
-		}).done(function(json) {
-			for (var key in json){
-				var getKey = json[key];
-				getKey.forEach(function(item){
-					$("#points-of-interest-table tr:last").after('<tr><td>' + item.number + '</td><td>' + item.description + '</td></tr>');
-				});
-			}
+      $.getJSON( "../points-of-interest.json", {
+          format: "json"
+      }).done(function(json) {
+          poi = json;
+      });
+  });
 
-		});
-	});
+  $(function() {
+    $("#trails-table").append('<tbody><tr><th>Colour</th><th>Distance in km</th><th>Distance in miles</th><th>Description</th></tr></tbody>');
+    $.getJSON( "../trails.json", {
+        format: "json"
+    }).done(function(json) {
+        for (var key in json){
+            var getKey = json[key];
+            getKey.forEach(function(item){
+                $("#trails-table tr:last").after('<tr><td>' + item.trail_colour + '</td><td>' + item.length_KM + '</td><td>' + item.length_miles + '</td><td>' + item.description + '</td></tr>');
+            });
+        }
 
-	  $(function() {
-		$("#trails-table").append('<tbody><tr><th>Colour</th><th>Distance in km</th><th>Distance in miles</th><th>Description</th></tr></tbody>');
-		$.getJSON( "../trails.json", {
-			format: "json"
-		}).done(function(json) {
-			for (var key in json){
-				var getKey = json[key];
-				getKey.forEach(function(item){
-					$("#trails-table tr:last").after('<tr><td>' + item.trail_colour + '</td><td>' + item.length_KM + '</td><td>' + item.length_miles + '</td><td>' + item.description + '</td></tr>');
-				});
-			}
+    });
+  });
 
-		});
-	});
+function selectedPoI(number) {
+  $(poi.pointsOfinterest).each(function(index, element) {
+    if(element.number == number)
+      document.getElementById("description").innerHTML = element.description;
+  });
+};
 
 </script>
 
 <nav class="navbar navbar-default">
-    <a data-toggle="tab" class="active" href="#map"><i class="fas fa-location-arrow"></i></a>
-    <a data-toggle="tab" href="#trails"><i class="fas fa-map-signs"></i></a>
-    <a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt"></i></a>
-    <a data-toggle="tab" href="#info"><i class="fas fa-info"></i></a>
-
+    <ul class="nav navbar-nav">
+        <li class="active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow"></i></a></li>
+        <li><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs"></i></a></li>
+        <li><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt"></i></a></li>
+        <li><a data-toggle="tab" href="#info"><i class="fas fa-info"></i></a></li>
+    </ul>
 </nav>
 
 <div class="container">
@@ -123,9 +127,16 @@
 
         <div id="points-of-interest" class="tab-pane fade in">
             <h1>Points of Interest</h1>
-            <table id="points-of-interest-table">
-            </table>
+
+            Select points of interest to find out more:
+            These are just examples and a proper view with back button will be created.
+
+            <a href="javascript:selectedPoI(1);">Number 1</a> <a href="javascript:selectedPoI(2);">Number 2</a>
+            <a href="javascript:selectedPoI('2A');">Number 2A</a> <a href="javascript:selectedPoI(3);">Number 3</a>
+
+            <p id="description"></p>
         </div>
+
     </div>
 </div> <!-- /container -->
 </body>
