@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>Fleet Pond App</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,25 +8,27 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!--link rel="stylesheet" href="http://fleetpond.org.uk/wp-content/themes/FleetPondTheme/css/main.css"-->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
-	
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--link rel="stylesheet" href="http://fleetpond.org.uk/wp-content/themes/FleetPondTheme/css/main.css"-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 
-	  <link rel="stylesheet" href="css/fleet-pond.css">
-	<script src="js/pond.js"></script>
-  </head>
-  <body>
-  <div class="overlay">
-		<div class="overlay-inner">
-				<div class="message">
-						<img src="images/fleet-pond-logo.png">
-				</div>
-		</div>
-  </div>
-  
-  <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/fleet-pond.css">
+    <script src="js/pond.js"></script>
+</head>
+<body>
+
+<div class="overlay">
+    <div class="overlay-inner">
+        <div class="message">
+            <img src="images/fleet-pond-logo.png">
+        </div>
+    </div>
+</div>
+
+<script>
   $(function() {
 		$("#points-of-interest-table").append('<tbody><tr><th>#</th><th>Description</th></tr></tbody>');
 		$.getJSON( "../points-of-interest.json", {
@@ -38,73 +40,93 @@
 					$("#points-of-interest-table tr:last").after('<tr><td>' + item.number + '</td><td>' + item.description + '</td></tr>');
 				});
 			}
-			
+
 		});
 	});
-  </script>
-  
-  <nav class="navbar navbar-default">
-		  <div class="container-fluid">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span> 
-			  </button>
-			  <img src="images/fleet-pond-logo.png">
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav pull-right">
-				  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-				  <li><a data-toggle="tab" href="#map">Map</a></li>
-				  <li><a data-toggle="tab" href="#points-of-interest">Points of Interest</a></li>
-				  <li><a data-toggle="tab" href="#contact-us">Contact Us</a></li>
-				</ul>
-			</div>
-		  </div>
-		</nav>
-		
-    <div class="container">
 
-	<div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
+	  $(function() {
+		$("#trails-table").append('<tbody><tr><th>Colour</th><th>Distance in km</th><th>Distance in miles</th><th>Description</th></tr></tbody>');
+		$.getJSON( "../trails.json", {
+			format: "json"
+		}).done(function(json) {
+			for (var key in json){
+				var getKey = json[key];
+				getKey.forEach(function(item){
+					$("#trails-table tr:last").after('<tr><td>' + item.trail_colour + '</td><td>' + item.length_KM + '</td><td>' + item.length_miles + '</td><td>' + item.description + '</td></tr>');
+				});
+			}
 
-			<div class="jumbotron">
-			  <h1 class="display-3">Welcome</h1>
-			  <p class="lead">Welcome to the Fleet Pond App</p>
-			  <p><a class="btn btn-lg btn-success" data-toggle="tab" href="#map" role="button">Interactive Map</a></p>
-			</div>
-		</div>
-	
-		<div id="map" class="tab-pane fade in">
-			  <h1>Interactive Map</h1>
-			  <div id="gpsPos"></div>
-			  <div id="mapScroller">
-					<img src="images/fleet-pond-map-2014.jpg">
-			  </div>
-		</div>
-		
-		<div id="contact-us" class="tab-pane fade in">
-			  <h1>Contact Us</h1>
-		</div>
-		
-		<div id="points-of-interest" class="tab-pane fade in">
-			  <h1>Points of Interest</h1>
-			  
-			  <table id="points-of-interest-table">
-			  </table>
-		</div>
-		
-		<div>
-		
-		</div>
-		
-	</div>
-	
-      <footer class="footer">
-        <p>&copy; Fleet Pond Society 2018</p>
-      </footer>
+		});
+	});
 
-    </div> <!-- /container -->
-  </body>
+</script>
+
+<nav class="navbar navbar-default">
+    <a data-toggle="tab" class="active" href="#map"><i class="fas fa-location-arrow"></i></a>
+    <a data-toggle="tab" href="#trails"><i class="fas fa-map-signs"></i></a>
+    <a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt"></i></a>
+    <a data-toggle="tab" href="#info"><i class="fas fa-info"></i></a>
+
+</nav>
+
+<div class="container">
+    <div class="tab-content">
+
+        <div id="map" class="tab-pane fade in active">
+            <h1>Map</h1>
+
+            <div id="gpsPos"></div>
+            <div id="mapScroller">
+                <img src="images/fleet-pond-map-2014.jpg">
+            </div>
+        </div>
+
+        <div id="info" class="tab-pane fade in">
+            <h1>Information</h1>
+
+            <p>
+                Welcome to the Fleet Pond companion app
+                You can use this app to plan a walk around the pond, or explore points of interest when you visit.
+                Use the Map tab to view an interactive map of the pond, with trails and points of interested marked.
+                Try the Trails tab to get more information on each trail, including the length of the trail and what
+                points of interest lie along its route.
+                From the Info tab, you can find useful links for the Fleet Pond society website and our social media.
+            </p>
+
+            <ul>
+                <li><a href="http://fleetpond.org.uk/about-fleet-pond/"><i class="fas fa-external-link-alt"></i> About
+                    Fleet Pond</a></li>
+                <li><a href="http://fleetpond.org.uk/history-of-the-pond/"><i class="fas fa-external-link-alt"></i>
+                    History of Fleet Pond</a></li>
+                <li><a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/"><i
+                        class="fas fa-external-link-alt"></i> Directions and Parking</a></li>
+                <li><a href="http://fleetpond.org.uk/news-and-reports/news/"><i class="fas fa-external-link-alt"></i>
+                    Fleet Pond News</a></li>
+                <li><a href="https://www.facebook.com/FleetPondSociety"><i class="fab fa-facebook-square"></i> Like us
+                    on Facebook</a></li>
+                <li><a href="https://twitter.com/FleetPondSoc"><i class="fab fa-twitter-square"></i> Follow us on
+                    Twitter</a></li>
+                <li>
+                    <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html"><i
+                            class="fab fa-tripadvisor"></i> Visit us on Trip Advisor</a></li>
+                <li><a href="https://www.flickr.com/groups/1501643@N22/"><i class="fab fa-flickr"></i> Check us out on
+                    Flickr</a></li>
+                <li><a href="https://fleetpond.wordpress.com/"><i class="fab fa-wordpress"></i> Read our blog</a></li>
+            </ul>
+        </div>
+
+        <div id="trails" class="tab-pane fade in">
+            <h1>Trails</h1>
+            <table id="trails-table">
+            </table>
+        </div>
+
+        <div id="points-of-interest" class="tab-pane fade in">
+            <h1>Points of Interest</h1>
+            <table id="points-of-interest-table">
+            </table>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
 </html>
