@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style
+  </head>
+  <body>
+  <div id="floating-panel">
+      <input onclick="removeOverlay();" type=button value="Remove overlay">
+      <input onclick="addOverlay();" type=button value="Restore overlay">
+    </div>
+    <div id="map"></div>
+    <script>
+      var map;
+      var pondMap;
+      
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center:{lat: 51.2890, lng: -0.8250},
+          zoom: 16
+        });
+                
+        var path01Coordinates = [
+          {lat: 51.2890, lng: -0.8260},
+          {lat: 51.2880, lng: -0.8250},
+          {lat: 51.2870, lng: -0.8260},
+          {lat: 51.2890, lng: -0.8250}
+        ];
+        var path01 = new google.maps.Polyline({
+          path: path01Coordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        
+         var imageBounds = {
+          north: 51.292000,
+          south: 51.2820,
+          east: -0.815100,
+          west: -0.833800
+        };
+        pondMap = new google.maps.GroundOverlay(
+            'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
+            imageBounds);
+        pondMap.setOpacity(0.6);
+        pondMap.setMap(map);
+        
+        path01.setMap(map);
+        
+
+        
+      }
+        function addOverlay() {
+            pondMap.setMap(map);
+        }
+
+        function removeOverlay() {
+            pondMap.setMap(null);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm98SdCiZnd-Gqt_Te-s3VnNbM7qBS1zE&callback=initMap"
+    async defer></script>
+  </body>
+</html>
