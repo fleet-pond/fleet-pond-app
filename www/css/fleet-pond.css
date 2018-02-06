@@ -25,6 +25,7 @@ html,body{
     overflow: hidden;
     position: fixed;
     bottom: 0;
+	left: 0;
     width: 100%;
     box-shadow: 0px -3px #dddddd;
 }
@@ -36,6 +37,30 @@ html,body{
      padding: 14px 16px;
      text-decoration: none;
      font-size: 17px;
+}
+.nav-item a:hover {
+	color: #e67e22 !important;
+}
+/* from the Fleet Pond website CSS */
+a:link, a:visited {
+	color:#27ae60;
+	text-decoration:none;
+}
+body {
+	font-family: "Open sans", arial, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.6;
+	color: #373737;
+	background-color: #ffffff;
+	position: relative;
+	height: 100%;
+}
+/* end */
+@media (max-width: 979px) {
+	.x-navbar-fixed-top, .x-navbar-fixed-left, .x-navbar-fixed-right {
+		position: fixed;
+	}
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -77,24 +102,4 @@ html,body{
 	overflow: auto;
     max-width: 100%;
     max-height: 600px;
-}
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-tr:nth-child(odd) {
-	background-color: white;
-}
-tr:hover {
-	background-color: #ddd;
-}
-th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #f39c12;
-    color: white;
 }

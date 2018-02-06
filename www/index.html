@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:javascript="http://www.w3.org/1999/xhtml">
 <head>
     <title>Fleet Pond App</title>
     <!-- Required meta tags -->
@@ -28,48 +28,12 @@
     </div>
 </div>
 
-<script>
-
-  var poi;
-
-  $(function() {
-      $.getJSON( "../points-of-interest.json", {
-          format: "json"
-      }).done(function(json) {
-          poi = json;
-      });
-  });
-
-  $(function() {
-    $("#trails-table").append('<tbody><tr><th>Colour</th><th>Distance in km</th><th>Distance in miles</th><th>Description</th></tr></tbody>');
-    $.getJSON( "../trails.json", {
-        format: "json"
-    }).done(function(json) {
-        for (var key in json){
-            var getKey = json[key];
-            getKey.forEach(function(item){
-                $("#trails-table tr:last").after('<tr><td>' + item.trail_colour + '</td><td>' + item.length_KM + '</td><td>' + item.length_miles + '</td><td>' + item.description + '</td></tr>');
-            });
-        }
-
-    });
-  });
-
-function selectedPoI(number) {
-  $(poi.pointsOfinterest).each(function(index, element) {
-    if(element.number == number)
-      document.getElementById("description").innerHTML = element.description;
-  });
-};
-
-</script>
-
-<nav class="navbar navbar-default">
+<nav id="navigation-bar" class="navbar navbar-default">
     <ul class="nav navbar-nav">
-        <li class="active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow"></i></a></li>
-        <li><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs"></i></a></li>
-        <li><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt"></i></a></li>
-        <li><a data-toggle="tab" href="#info"><i class="fas fa-info"></i></a></li>
+        <li class="nav-item active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow fa-2x fa-fw"></i></a></li>
+        <li class="nav-item"><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs fa-2x fa-fw"></i></a></li>
+        <li class="nav-item"><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt fa-2x fa-fw"></i></a></li>
+        <li class="nav-item"><a data-toggle="tab" href="#info"><i class="fas fa-info fa-2x fa-fw"></i></a></li>
     </ul>
 </nav>
 
@@ -97,44 +61,71 @@ function selectedPoI(number) {
                 From the Info tab, you can find useful links for the Fleet Pond society website and our social media.
             </p>
 
-            <ul>
-                <li><a href="http://fleetpond.org.uk/about-fleet-pond/"><i class="fas fa-external-link-alt"></i> About
-                    Fleet Pond</a></li>
-                <li><a href="http://fleetpond.org.uk/history-of-the-pond/"><i class="fas fa-external-link-alt"></i>
-                    History of Fleet Pond</a></li>
-                <li><a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/"><i
-                        class="fas fa-external-link-alt"></i> Directions and Parking</a></li>
-                <li><a href="http://fleetpond.org.uk/news-and-reports/news/"><i class="fas fa-external-link-alt"></i>
-                    Fleet Pond News</a></li>
-                <li><a href="https://www.facebook.com/FleetPondSociety"><i class="fab fa-facebook-square"></i> Like us
-                    on Facebook</a></li>
-                <li><a href="https://twitter.com/FleetPondSoc"><i class="fab fa-twitter-square"></i> Follow us on
-                    Twitter</a></li>
-                <li>
-                    <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html"><i
-                            class="fab fa-tripadvisor"></i> Visit us on Trip Advisor</a></li>
-                <li><a href="https://www.flickr.com/groups/1501643@N22/"><i class="fab fa-flickr"></i> Check us out on
-                    Flickr</a></li>
-                <li><a href="https://fleetpond.wordpress.com/"><i class="fab fa-wordpress"></i> Read our blog</a></li>
-            </ul>
+            <p>
+                <a href="http://fleetpond.org.uk/about-fleet-pond/" target="_blank"><i class="fas fa-external-link-alt"></i> About Fleet Pond</a>
+                <br>
+                <a href="http://fleetpond.org.uk/history-of-the-pond/" target="_blank"><i class="fas fa-external-link-alt"></i> History of Fleet Pond</a></li>
+                <br>
+                <a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/" target="_blank"><i class="fas fa-external-link-alt"></i> Directions and Parking</a>
+                <br>
+                <a href="http://fleetpond.org.uk/news-and-reports/news/" target="_blank"><i class="fas fa-external-link-alt"></i> Fleet Pond News</a>
+            </p>
+
+            <hr/>
+
+            <p>
+                <a href="https://www.facebook.com/FleetPondSociety" target="_blank"><i class="fab fa-facebook-square"></i> Like us on Facebook</a>
+                <br>
+                <a href="https://twitter.com/FleetPondSoc" target="_blank"><i class="fab fa-twitter-square"></i> Follow us on Twitter</a>
+                <br>
+                <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html" target="_blank"><i class="fab fa-tripadvisor"></i> Visit us on Trip Advisor</a>
+                <br>
+                <a href="https://www.flickr.com/groups/1501643@N22/" target="_blank"><i class="fab fa-flickr"></i> Check us out on Flickr</a>
+                <br>
+                <a href="https://fleetpond.wordpress.com/" target="_blank"><i class="fab fa-wordpress"></i> Read our blog</a>
+            </p>
+
         </div>
 
         <div id="trails" class="tab-pane fade in">
             <h1>Trails</h1>
-            <table id="trails-table">
-            </table>
+            <div id="trail-info"></div>
         </div>
 
         <div id="points-of-interest" class="tab-pane fade in">
             <h1>Points of Interest</h1>
 
-            Select points of interest to find out more:
-            These are just examples and a proper view with back button will be created.
+            <p>
+                Select points of interest to find out more:
+            </p>
 
-            <a href="javascript:selectedPoI(1);">Number 1</a> <a href="javascript:selectedPoI(2);">Number 2</a>
-            <a href="javascript:selectedPoI('2A');">Number 2A</a> <a href="javascript:selectedPoI(3);">Number 3</a>
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(1);">
+                <i class="fas fa-map-marker-alt"></i>1
+            </a>
 
-            <p id="description"></p>
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(2);">
+                <i class="fas fa-map-marker-alt"></i>2
+            </a>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI('2A');">
+                <i class="fas fa-map-marker-alt"></i>2A
+            </a>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(3);">
+                <i class="fas fa-map-marker-alt"></i>3
+            </a>
+        </div>
+
+        <div id="selected-points-of-interest" class="tab-pane fade in">
+
+            <h1>
+                <a data-toggle="tab" href=#points-of-interest onclick="showOrHide();">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+            </h1>
+            <h1 id="poi-heading"></h1>
+
+            <p id="poi-description"></p>
         </div>
 
     </div>
