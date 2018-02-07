@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" xmlns:javascript="http://www.w3.org/1999/xhtml">
+<head>
     <title>Fleet Pond App</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,103 +8,143 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!--link rel="stylesheet" href="http://fleetpond.org.uk/wp-content/themes/FleetPondTheme/css/main.css"-->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
-	
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--link rel="stylesheet" href="http://fleetpond.org.uk/wp-content/themes/FleetPondTheme/css/main.css"-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
 
-	  <link rel="stylesheet" href="css/fleet-pond.css">
-	<script src="js/pond.js"></script>
-  </head>
-  <body>
-  <div class="overlay">
-		<div class="overlay-inner">
-				<div class="message">
-						<img src="images/fleet-pond-logo.png">
-				</div>
-		</div>
-  </div>
-  
-  <script>
-  $(function() {
-		$("#points-of-interest-table").append('<tbody><tr><th>#</th><th>Description</th></tr></tbody>');
-		$.getJSON( "../points-of-interest.json", {
-			format: "json"
-		}).done(function(json) {
-			for (var key in json){
-				var getKey = json[key];
-				getKey.forEach(function(item){
-					$("#points-of-interest-table tr:last").after('<tr><td>' + item.number + '</td><td>' + item.description + '</td></tr>');
-				});
-			}
-			
-		});
-	});
-  </script>
-  
-  <nav class="navbar navbar-default">
-		  <div class="container-fluid">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span> 
-			  </button>
-			  <img src="images/fleet-pond-logo.png">
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav pull-right">
-				  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-				  <li><a data-toggle="tab" href="#map">Map</a></li>
-				  <li><a data-toggle="tab" href="#points-of-interest">Points of Interest</a></li>
-				  <li><a data-toggle="tab" href="#contact-us">Contact Us</a></li>
-				</ul>
-			</div>
-		  </div>
-		</nav>
-		
-    <div class="container">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
+    <link rel="stylesheet" href="css/fleet-pond.css">
+    <script src="js/pond.js"></script>
+</head>
+<body>
 
-			<div class="jumbotron">
-			  <h1 class="display-3">Welcome</h1>
-			  <p class="lead">Welcome to the Fleet Pond App</p>
-			  <p><a class="btn btn-lg btn-success" data-toggle="tab" href="#map" role="button">Interactive Map</a></p>
-			</div>
-		</div>
-	
-		<div id="map" class="tab-pane fade in">
-			  <h1>Interactive Map</h1>
-			  <div id="gpsPos"></div>
-			  <div id="mapScroller">
-					<img src="images/fleet-pond-map-2014.jpg">
-			  </div>
-		</div>
-		
-		<div id="contact-us" class="tab-pane fade in">
-			  <h1>Contact Us</h1>
-		</div>
-		
-		<div id="points-of-interest" class="tab-pane fade in">
-			  <h1>Points of Interest</h1>
-			  
-			  <table id="points-of-interest-table">
-			  </table>
-		</div>
-		
-		<div>
-		
-		</div>
-		
-	</div>
-	
-      <footer class="footer">
-        <p>&copy; Fleet Pond Society 2018</p>
-      </footer>
+<div class="overlay">
+    <div class="overlay-inner">
+        <div class="message">
+            <img src="images/fleet-pond-logo.png">
+        </div>
+    </div>
+</div>
 
-    </div> <!-- /container -->
-  </body>
+<nav id="navigation-bar" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="nav-item"><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs fa-2x fa-fw"></i><br>Trails</a></li>
+            <li class="nav-item active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow fa-2x fa-fw"></i><br>Map</a></li>
+            <li class="nav-item"><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt fa-2x fa-fw"></i><br>Points</a></li>
+            <li class="nav-item"><a data-toggle="tab" href="#info"><i class="fas fa-info fa-2x fa-fw"></i><br>Info</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container container-fluid">
+    <div class="tab-content">
+
+        <div id="map" class="tab-pane fade in active">
+            <h1>Map</h1>
+
+            <div id="gpsPos"></div>
+
+            <div id="mapScroller">
+                <button type="button" id="zoom-in"><i class="fas fa-search-plus"></i></button>
+                <button type="button" id="zoom-out"><i class="fas fa-search-minus"></i></button>
+                <img id="pond-map" src="images/fleet-pond-map-2014.jpg">
+            </div>
+        </div>
+
+        <div id="info" class="tab-pane fade in">
+            <h1>Information</h1>
+
+            <p>
+                Welcome to the Fleet Pond companion app
+                You can use this app to plan a walk around the pond, or explore points of interest when you visit.
+                Use the Map tab to view an interactive map of the pond, with trails and points of interested marked.
+                Try the Trails tab to get more information on each trail, including the length of the trail and what
+                points of interest lie along its route.
+                From the Info tab, you can find useful links for the Fleet Pond society website and our social media.
+            </p>
+
+            <p>
+                <a href="http://fleetpond.org.uk/about-fleet-pond/" target="_blank"><i class="fas fa-external-link-alt"></i> About Fleet Pond</a>
+                <br>
+                <a href="http://fleetpond.org.uk/history-of-the-pond/" target="_blank"><i class="fas fa-external-link-alt"></i> History of Fleet Pond</a></li>
+                <br>
+                <a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/" target="_blank"><i class="fas fa-external-link-alt"></i> Directions and Parking</a>
+                <br>
+                <a href="http://fleetpond.org.uk/news-and-reports/news/" target="_blank"><i class="fas fa-external-link-alt"></i> Fleet Pond News</a>
+            </p>
+
+            <hr/>
+
+            <p>
+                <a href="https://www.facebook.com/FleetPondSociety" target="_blank"><i class="fab fa-facebook-square"></i> Like us on Facebook</a>
+                <br>
+                <a href="https://twitter.com/FleetPondSoc" target="_blank"><i class="fab fa-twitter-square"></i> Follow us on Twitter</a>
+                <br>
+                <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html" target="_blank"><i class="fab fa-tripadvisor"></i> Visit us on Trip Advisor</a>
+                <br>
+                <a href="https://www.flickr.com/groups/1501643@N22/" target="_blank"><i class="fab fa-flickr"></i> Check us out on Flickr</a>
+                <br>
+                <a href="https://fleetpond.wordpress.com/" target="_blank"><i class="fab fa-wordpress"></i> Read our blog</a>
+            </p>
+
+        </div>
+
+        <div id="trails" class="tab-pane fade in">
+            <h1>Trails</h1>
+            <div id="trail-info"></div>
+        </div>
+
+        <div id="points-of-interest" class="tab-pane fade in">
+            <h1>Points of Interest</h1>
+
+            <p>
+                Select points of interest to find out more:
+            </p>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(1);">
+                <i class="fas fa-map-marker-alt"></i>1
+            </a>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(2);">
+                <i class="fas fa-map-marker-alt"></i>2
+            </a>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI('2A');">
+                <i class="fas fa-map-marker-alt"></i>2A
+            </a>
+
+            <a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(3);">
+                <i class="fas fa-map-marker-alt"></i>3
+            </a>
+        </div>
+
+        <div id="selected-points-of-interest" class="tab-pane fade in">
+
+            <br>
+
+            <h2 style="display:inline;">
+                <a data-toggle="tab" href=#points-of-interest onclick="showOrHide();">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+            </h2>
+            <h2 style="display:inline;" id="poi-heading"></h2>
+
+            <b><p id="poi-name"></p></b>
+
+            <br>
+
+            <div id="poi-image-container container"><img id="poi-image"></div>
+
+            <br><br>
+
+            <p id="poi-description"></p>
+
+        </div>
+
+    </div>
+</div> <!-- /container -->
+</body>
 </html>
