@@ -39,8 +39,10 @@ $(function() {
 function selectedPoI(number) {
     $(poi.points_of_interest).each(function(index, element) {
         if(element.number == number) {
-            document.getElementById("poi-description").innerHTML = element.description;
-            document.getElementById("poi-heading").innerHTML = 'More about #' + number;
+            $("#poi-heading").html('Point of Interest ' + number);
+            $("#poi-name").html(element.name);
+            $("#poi-image").attr("src", '../images/' + element.image);
+            $("#poi-description").html(element.description);
             showOrHide();
         }
     });
@@ -54,3 +56,14 @@ function showOrHide() {
         x.style.display = "none";
     }
 }
+
+$(document).ready(function() {
+    $('#zoom-in').click(function () {
+        $('#pond-map').width($('#pond-map').width()*1.2)
+        $('#pond-map').height($('#pond-map').height()*1.2)
+    })
+    $('#zoom-out').click(function () {
+        $('#pond-map').width($('#pond-map').width()/1.2)
+        $('#pond-map').height($('#pond-map').height()/1.2)
+    })
+});

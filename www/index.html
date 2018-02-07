@@ -28,24 +28,29 @@
     </div>
 </div>
 
-<nav id="navigation-bar" class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-        <li class="nav-item active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow fa-2x fa-fw"></i></a></li>
-        <li class="nav-item"><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs fa-2x fa-fw"></i></a></li>
-        <li class="nav-item"><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt fa-2x fa-fw"></i></a></li>
-        <li class="nav-item"><a data-toggle="tab" href="#info"><i class="fas fa-info fa-2x fa-fw"></i></a></li>
-    </ul>
+<nav id="navigation-bar" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="nav-item"><a data-toggle="tab" href="#trails"><i class="fas fa-map-signs fa-2x fa-fw"></i><br>Trails</a></li>
+            <li class="nav-item active"><a data-toggle="tab" href="#map"><i class="fas fa-location-arrow fa-2x fa-fw"></i><br>Map</a></li>
+            <li class="nav-item"><a data-toggle="tab" href="#points-of-interest"><i class="fas fa-map-marker-alt fa-2x fa-fw"></i><br>Points</a></li>
+            <li class="nav-item"><a data-toggle="tab" href="#info"><i class="fas fa-info fa-2x fa-fw"></i><br>Info</a></li>
+        </ul>
+    </div>
 </nav>
 
-<div class="container">
+<div class="container container-fluid">
     <div class="tab-content">
 
         <div id="map" class="tab-pane fade in active">
             <h1>Map</h1>
 
             <div id="gpsPos"></div>
+
             <div id="mapScroller">
-                <img src="images/fleet-pond-map-2014.jpg">
+                <button type="button" id="zoom-in"><i class="fas fa-search-plus"></i></button>
+                <button type="button" id="zoom-out"><i class="fas fa-search-minus"></i></button>
+                <img id="pond-map" src="images/fleet-pond-map-2014.jpg">
             </div>
         </div>
 
@@ -118,14 +123,25 @@
 
         <div id="selected-points-of-interest" class="tab-pane fade in">
 
-            <h1>
+            <br>
+
+            <h2 style="display:inline;">
                 <a data-toggle="tab" href=#points-of-interest onclick="showOrHide();">
                     <i class="fas fa-angle-double-left"></i>
                 </a>
-            </h1>
-            <h1 id="poi-heading"></h1>
+            </h2>
+            <h2 style="display:inline;" id="poi-heading"></h2>
+
+            <b><p id="poi-name"></p></b>
+
+            <br>
+
+            <div id="poi-image-container container"><img id="poi-image"></div>
+
+            <br><br>
 
             <p id="poi-description"></p>
+
         </div>
 
     </div>
