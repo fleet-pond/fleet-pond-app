@@ -21,3 +21,11 @@ Get the Cordova package
 Then to see your results. Run
 
 `cordova run browser`
+
+NOTE: If you experience errors, such as 'No platforms added to this project',
+when running the above command then try the following:
+
+`cordova platform add browser`
+
+The above looks like a potential difference between unix/windows in the
+config.xml

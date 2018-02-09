@@ -7,8 +7,8 @@ function getLocation() {
     }
 }
 function showPosition(position) {
-    gpsPosDiv.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude; 
+    gpsPosDiv.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
 }
 
 var poi;
@@ -16,7 +16,16 @@ $(function() {
     $.getJSON( "../points-of-interest.json", {
         format: "json"
     }).done(function(json) {
-        poi = json;
+      poi = json;
+        for (var key in json) {
+          var getKey = json[key];
+          getKey.forEach(function(item) {
+            $("#points-of-interest-info").before('<a data-toggle="tab"' +
+            ' href=#selected-points-of-interest' +
+            ' onclick="selectedPoI(' + item.number + ');">' +
+            '<i class="fas fa-map-marker-alt"></i>' + item.number + '</a><br>');
+          });
+        }
     });
 });
 
