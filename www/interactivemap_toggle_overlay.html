@@ -80,11 +80,21 @@
       var redPath;
       var yellowPath;
       var overlayOn=true;
+      var gpsOptions = { timeout: 50000 };
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center:{lat: 51.2860, lng: -0.8250},
           zoom: 15
+        });
+
+        userPosition = new google.maps.Circle({
+            strokeColor: '#4E4',
+            strokeOpacity: 1,
+            strokeWeight: 6,
+            fillColor: '#4E4',
+            fillOpacity: 1,
+            radius: 8
         });
 
         bluePath = new google.maps.Polyline({
@@ -126,6 +136,9 @@
         bluePath.setMap(map);
         yellowPath.setMap(map);
         redPath.setMap(map);
+
+        updateGPSLocation(userPosition);
+        userPosition.setMap(map);
     }
 
     function toggleMapItem(item, show) {
@@ -147,6 +160,25 @@
       else {
         selectorElement.style.display = "none";
         buttonElement.innerHTML = "Show";
+      }
+    }
+
+    function updateGPSLocation(userPosition) {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          console.log(pos.coords.latitude);
+          console.log(pos.coords.longitude);
+          userPosition.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
+          setTimeout(function() { updateGPSLocation(userPosition); }, 5000);
+        },
+        function() {
+          console.log("NOPE - timeout")
+          userPosition.setMap(null);
+        }, gpsOptions);
+      }
+      else {
+        console.log("NOPE - unavailable");
+        userPosition.setMap(null);
       }
     }
 
