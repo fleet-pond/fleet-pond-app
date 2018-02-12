@@ -23,7 +23,7 @@ $(function() {
             $("#points-of-interest-info").before('<a data-toggle="tab"' +
             ' href=#selected-points-of-interest' +
             ' onclick="selectedPoI(' + item.number + ');">' +
-            '<i class="fas fa-map-marker-alt"></i>' + item.number + '</a><br>');
+            '<i class="fas fa-map-marker-alt"></i> ' + item.number + '&#09; - ' + item.name + '</a><br>');
           });
         }
     });
@@ -36,7 +36,7 @@ $(function() {
         for (var key in json){
             var getKey = json[key];
             getKey.forEach(function(item){
-                $("#trail-info").after('<b><i class="far fa-map"></i> ' + item.trail_colour + ' Route</b><br>' +
+                $("#trail-info").after('<b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b><br>' +
                     'Length ' + item.length_KM + 'km (' + item.length_miles + ' miles)<br><br>' +
                     '<p>' + item.description + '</p>' +
                     '<hr>');
