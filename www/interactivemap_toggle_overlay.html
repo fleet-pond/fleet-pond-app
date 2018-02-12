@@ -12,13 +12,11 @@
         height: 100%;
       }
 
-
-      html,
-        body {
-            height: 100%;
-                margin: 0;
-                padding: 0;
-        }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -32,10 +30,9 @@
         margin: 0;
         padding: 0;
       }
-      #floating-panel {
-          width:147px;
+      .floating-panel {
+        width:100px;
         position: absolute;
-
         z-index: 5;
         background-color: #fff;
         padding: 2px;
@@ -45,64 +42,36 @@
         line-height: 30px;
         padding-left: 4px;
         padding-right: 4px;
-      }
-      #floating-panel span.title,       #floating-panel1 span.title {
-        font-family: 'Roboto','sans-serif';
         font-size: 12px
       }
-
-
-     .panel1 {
-
-        top: 470px;
-        left:200px
+      .floating-panel span.title,       #floating-panel1 span.title {
+        font-family: 'Roboto','sans-serif';
+        font-weight: bold;
       }
 
-      .panel2 {
-      
-        top: 390px;
-        left: 8px;
+      #panelShowHide {
+        bottom: 0px;
+        left: 0px;
       }
-
-      .panel3 {
-      
-      top: 430px;
-      left: 8px;
-    }
-
-    .panel4 {
-      
-      top: 470px;
-      left: 8px;
-    }
-
-    </style
+    </style>
   </head>
   <body>
-    <div id="floating-panel" class="panel1">
-      <span class="title">Overlay:</span>
-      <input onclick="addOverlay();" type=button value="On">
-      <input onclick="removeOverlay();" type=button value="Off">
-
+    <div id="panelShowHide" class="floating-panel">
+      <span class="title">Overlay: </span>
+      <button id="selectorButton" onclick="toggleSelector()">Hide</button><br/>
+      <div id="mapSelector">
+        <input id="checkBoxOverlay" type="checkbox" onchange="toggleMapItem(pondMap, this.checked)">
+        <span>Map</span><br/>
+        <span class="title">Routes:</span><br/>
+        <input id="checkBoxRed" type="checkbox" checked onchange="toggleMapItem(redPath, this.checked)">
+        <span>Red (1km)</span><br/>
+        <input id="checkBoxYellow" type="checkbox" checked onchange="toggleMapItem(yellowPath, this.checked)">
+        <span>Yellow (3km)</span><br/>
+        <input id="checkBoxBlue" type="checkbox" checked onchange="toggleMapItem(bluePath, this.checked)">
+        <span>Blue (4km)</span>
+      </div>
     </div>
-    <div id="floating-panel" class="panel2">
-      <span class="title">Red route:</span>
-      <input onclick="addRedLine();" type=button value="On">
-      <input onclick="removeRedLine();" type=button value="Off">
 
-    </div>
-    <div id="floating-panel" class="panel3">
-      <span class="title">Yellow route:</span>
-      <input onclick="addYellowLine();" type=button value="On">
-      <input onclick="removeYellowLine();" type=button value="Off">
-
-    </div>
-    <div id="floating-panel" class="panel4">
-      <span class="title">Blue route:</span>
-      <input onclick="addBlueLine();" type=button value="On">
-      <input onclick="removeBlueLine();" type=button value="Off">
-
-    </div>
     <div id="map"></div>
     <script>
       var map;
@@ -117,8 +86,6 @@
           center:{lat: 51.2860, lng: -0.8250},
           zoom: 15
         });
-
-      
 
         bluePath = new google.maps.Polyline({
           path: bluePathCoodinates,
@@ -144,7 +111,7 @@
           strokeWeight: 3
         });
 
-         var imageBounds = {
+        var imageBounds = {
           north: 51.292000,
           south: 51.2820,
           east: -0.815100,
@@ -155,47 +122,32 @@
             'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
             imageBounds);
         pondMap.setOpacity(0.6);
-        pondMap.setMap(null);
 
         bluePath.setMap(map);
         yellowPath.setMap(map);
         redPath.setMap(map);
-
-
-    }
-    function addOverlay() {
-        console.log("test" + overlayOn)
-        pondMap.setMap(map);
     }
 
-    function removeOverlay() {
-        console.log("test" + overlayOn)
-        pondMap.setMap(null);
+    function toggleMapItem(item, show) {
+      if (show) {
+        item.setMap(map);
+      }
+      else {
+        item.setMap(null);
+      }
     }
 
-
-    function addRedLine() {
-      redPath.setMap(map);
-    }
-
-    function removeRedLine() {
-      redPath.setMap(null);
-    }
-
-    function addBlueLine() {
-      bluePath.setMap(map);
-    }
-
-    function removeBlueLine() {
-     bluePath.setMap(null);
-    }
-
-    function addYellowLine() {
-      yellowPath.setMap(map);
-    }
-
-    function removeYellowLine() {
-      yellowPath.setMap(null);
+    function toggleSelector() {
+      var selectorElement = document.getElementById("mapSelector");
+      var buttonElement = document.getElementById("selectorButton")
+      if (selectorElement.style.display == "none"){
+        selectorElement.style.display = "block";
+        buttonElement.innerHTML = "Hide";
+      }
+      else {
+        selectorElement.style.display = "none";
+        buttonElement.innerHTML = "Show";
+      }
     }
 
     </script>
