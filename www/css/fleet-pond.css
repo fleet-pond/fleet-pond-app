@@ -45,6 +45,16 @@ html,body{
 .nav-item a:hover {
 	color: #e67e22 !important;
 }
+.navbar-nav {
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+.navbar-nav > li {
+    display: inline-block;
+    float:none;
+}
 .affix {
 	bottom: 0;
 	width: 100%;
