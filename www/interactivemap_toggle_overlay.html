@@ -69,6 +69,11 @@
         <span>Yellow (3km)</span><br/>
         <input id="checkBoxBlue" type="checkbox" checked onchange="toggleMapItem(bluePath, this.checked)">
         <span>Blue (4km)</span>
+        <div style="font-size: 10px">Alternative routes:</div>
+        <input id="checkBoxGreen" type="checkbox" checked onchange="toggleMapItem(greenPath, this.checked)">
+        <span>Green</span><br/>
+        <input id="checkBoxBrown" type="checkbox" checked onchange="toggleMapItem(brownPath, this.checked)">
+        <span>Brown</span>
       </div>
     </div>
 
@@ -79,6 +84,8 @@
       var bluePath;
       var redPath;
       var yellowPath;
+      var greenPath;
+      var brownPath;
       var overlayOn=true;
       var gpsOptions = { timeout: 50000 };
 
@@ -121,6 +128,23 @@
           strokeWeight: 3
         });
 
+        greenPath = new google.maps.Polyline({
+          path: greenPathCoordinates,
+          geodesic: true,
+          strokeColor: '#008000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+
+        brownPath = new google.maps.Polyline({
+          path: brownPathCoordinates,
+          geodesic: true,
+          strokeColor: '#8B4513',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+
+
         var imageBounds = {
           north: 51.292000,
           south: 51.2820,
@@ -136,6 +160,8 @@
         bluePath.setMap(map);
         yellowPath.setMap(map);
         redPath.setMap(map);
+        greenPath.setMap(map);
+        brownPath.setMap(map);
 
         updateGPSLocation(userPosition);
         userPosition.setMap(map);
