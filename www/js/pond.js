@@ -22,7 +22,7 @@ $(function() {
           getKey.forEach(function(item) {
             $("#points-of-interest-info").before('<a data-toggle="tab"' +
             ' href=#selected-points-of-interest' +
-            ' onclick="selectedPoI(' + item.number + ');">' +
+            ' onclick="selectedPoI(\'' + item.number + '\');">' +
             '<i class="fas fa-map-marker-alt"></i> ' + item.number + '&#09; - ' + item.name + '</a><br>');
           });
         }
