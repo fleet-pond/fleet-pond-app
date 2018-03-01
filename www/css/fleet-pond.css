@@ -99,3 +99,74 @@ body {
     max-width: 100%;
     max-height: 600px;
 }
+
+/* POI CSS */
+.pointOfInterest{
+    max-width: 100%;
+    border-color: #333;
+    border-style: solid;
+    border-width: 2px;
+    margin-bottom: 10px;
+}
+
+.poiText {
+    max-width: calc(100% - 90px);
+    float: left;
+    margin-left: 5px;
+}
+
+.poiText > a {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px;
+}
+
+.poiText > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px;
+}
+
+.poiText > i {
+    margin-right: 5px;
+}
+
+.poiPic {
+    float: right;
+    border-width: 2px;
+    border-color: #333;
+    border-left-style: solid;
+    width: 82px;
+}
+
+.poiPic > img {
+    height: 80px;
+    width: 80px;
+}
+
+.clear {
+    clear: both;
+}
+
+.redRoute {
+    color: #f00;
+}
+
+.yellowRoute {
+    color: #ee4;
+}
+
+.blueRoute {
+    color: #00f;
+}
+
+.greenRoute {
+    color: #080;
+}
+
+.brownRoute {
+    color: #841;
+}

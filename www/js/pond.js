@@ -1,4 +1,5 @@
 var gpsPosDiv = document.getElementById("gpsPos");
+
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -6,6 +7,7 @@ function getLocation() {
         gpsPosDiv.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
+
 function showPosition(position) {
     gpsPosDiv.innerHTML = "Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude;
@@ -20,10 +22,17 @@ $(function() {
         for (var key in json) {
           var getKey = json[key];
           getKey.forEach(function(item) {
-            $("#points-of-interest-info").before('<a data-toggle="tab"' +
-            ' href=#selected-points-of-interest' +
-            ' onclick="selectedPoI(\'' + item.number + '\');">' +
-            '<i class="fas fa-map-marker-alt"></i> ' + item.number + '&#09; - ' + item.name + '</a><br>');
+            var routesHTML = "";
+            item.routes.forEach(function(route) {
+                routesHTML+='<i class="fas fa-map-signs ' + route + 'Route"></i>';
+            });
+            $("#points-of-interest-info").before('<div class="pointOfInterest">' +
+                '<div class="poiText"><a data-toggle="tab" ' +
+                'href=#selected-points-of-interest onclick="selectedPoI(\'' +
+                item.number + '\');">' + item.number + '&#09; - ' + item.name +
+                '</a><p>' + item.description + '</p>' + routesHTML +
+                '</div><div class="poiPic"><img src="../images/' + item.image +
+                '"/></div><div class="clear"</div></div>');
           });
         }
     });
@@ -36,10 +45,10 @@ $(function() {
         for (var key in json){
             var getKey = json[key];
             getKey.forEach(function(item){
-                $("#trail-info").after('<b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b><br>' +
-                    'Length ' + item.length_KM + 'km (' + item.length_miles + ' miles)<br><br>' +
-                    '<p>' + item.description + '</p>' +
-                    '<hr>');
+                $("#trail-info").before('<b><i class="fas fa-map-signs" style="color:' +
+                    item.color_hex + '"></i> ' + item.trail_colour + ' Route</b><br>' +
+                    'Length ' + item.length_KM + 'km (' + item.length_miles +
+                    ' miles)<br><br><p>' + item.description + '</p><hr>');
             });
         }
     });

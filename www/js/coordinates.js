@@ -1,4 +1,4 @@
-var greenPathCoordinates = [ 
+var greenPathCoordinates = [
     {lat: 51.285857, lng: -0.819136},
     {lat: 51.285990, lng: -0.818412},
     {lat: 51.286436, lng: -0.818361},
@@ -20,9 +20,9 @@ var greenPathCoordinates = [
     {lat: 51.289975, lng: -0.817326},
     {lat: 51.290418, lng: -0.818269},
     {lat: 51.29057824611664, lng: -0.818618893623352},
-  ];
+];
 
-  var brownPathCoordinates = [ 
+var brownPathCoordinates = [
     {lat: 51.290749, lng: -0.823890},
     {lat: 51.290548, lng: -0.823271},
     {lat: 51.290193, lng: -0.822100},
@@ -33,7 +33,7 @@ var greenPathCoordinates = [
     {lat: 51.288926, lng: -0.818052},
     {lat: 51.288737, lng: -0.817842},
     {lat: 51.288594007492065, lng: -0.817750096321106},
-  ];
+];
 
 var redPathCoordinates = [
     {lat: 51.29119735, lng: -0.81939876},
@@ -57,7 +57,7 @@ var redPathCoordinates = [
     {lat: 51.29087269306183, lng: -0.8193837404251099},
     {lat: 51.2910680770874, lng: -0.8194254636764526},
     {lat: 51.29119735, lng: -0.81939876}
-  ];
+];
 
 var bluePathCoodinates = [
     {lat: 51.29119735, lng: -0.81939876},
