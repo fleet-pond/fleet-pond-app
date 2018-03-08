@@ -4,6 +4,7 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/coordinates.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -156,6 +157,34 @@
             'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
             imageBounds);
         pondMap.setOpacity(0.6);
+
+        var poi;
+        $(function() {
+            $.getJSON( "points-of-interest.json", {
+                format: "json"
+            }).done(function(json) {
+              poi = json;
+                for (var key in json) {
+                  var getKey = json[key];
+                  getKey.forEach(function(item) {
+                    var position = {lat: item.latitude, lng: item.longitude};
+                    var marker = new google.maps.Marker({
+                      position: position,
+                      map: map,
+                      animation: google.maps.Animation.DROP
+                    });
+                    var infoWindow = new google.maps.InfoWindow({
+                      content: item.name
+                      //content: '<a href="#selected-points-of-interest" onclick="selectedPoI(' + item.number + ')">' + item.name + '</a>'
+                    });
+                    marker.addListener('click', function() {
+                      infoWindow.open(map, marker);
+                    })
+                  });
+                }
+            });
+        });
+
 
         bluePath.setMap(map);
         yellowPath.setMap(map);
