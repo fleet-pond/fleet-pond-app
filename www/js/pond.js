@@ -1,21 +1,6 @@
-var gpsPosDiv = document.getElementById("gpsPos");
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        gpsPosDiv.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function showPosition(position) {
-    gpsPosDiv.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-}
-
 var poi;
 $(function() {
-    $.getJSON( "../points-of-interest.json", {
+    $.getJSON( "points-of-interest.json", {
         format: "json"
     }).done(function(json) {
       poi = json;
@@ -31,15 +16,13 @@ $(function() {
                 'href=#selected-points-of-interest onclick="selectedPoI(\'' +
                 item.number + '\');">' + item.number + '&#09; - ' + item.name +
                 '</a><p>' + item.description + '</p>' + routesHTML +
-                '</div><div class="poiPic"><img src="../images/' + item.image +
+                '</div><div class="poiPic"><img src="images/' + item.image +
                 '"/></div><div class="clear"</div></div>');
           });
         }
     });
-});
-
-$(function() {
-    $.getJSON( "../trails.json", {
+	
+    $.getJSON( "trails.json", {
         format: "json"
     }).done(function(json) {
         for (var key in json){
@@ -52,6 +35,15 @@ $(function() {
             });
         }
     });
+	
+	$('#zoom-in').click(function () {
+        $('#pond-map').width($('#pond-map').width()*1.2)
+        $('#pond-map').height($('#pond-map').height()*1.2)
+    })
+    $('#zoom-out').click(function () {
+        $('#pond-map').width($('#pond-map').width()/1.2)
+        $('#pond-map').height($('#pond-map').height()/1.2)
+    })
 });
 
 function selectedPoI(number) {
@@ -59,7 +51,7 @@ function selectedPoI(number) {
         if(element.number == number) {
             $("#poi-heading").html('Point of Interest ' + number);
             $("#poi-name").html(element.name);
-            $("#poi-image").attr("src", '../images/' + element.image);
+            $("#poi-image").attr("src", 'images/' + element.image);
             $("#poi-description").html(element.description);
             showOrHide();
         }
@@ -75,13 +67,5 @@ function showOrHide() {
     }
 }
 
-$(document).ready(function() {
-    $('#zoom-in').click(function () {
-        $('#pond-map').width($('#pond-map').width()*1.2)
-        $('#pond-map').height($('#pond-map').height()*1.2)
-    })
-    $('#zoom-out').click(function () {
-        $('#pond-map').width($('#pond-map').width()/1.2)
-        $('#pond-map').height($('#pond-map').height()/1.2)
-    })
-});
+
+    

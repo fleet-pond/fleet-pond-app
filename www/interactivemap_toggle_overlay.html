@@ -87,7 +87,7 @@
       var greenPath;
       var brownPath;
       var overlayOn=true;
-      var gpsOptions = { timeout: 50000 };
+      var gpsOptions = { timeout: 10000 };
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -192,8 +192,6 @@
     function updateGPSLocation(userPosition) {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(pos) {
-          console.log(pos.coords.latitude);
-          console.log(pos.coords.longitude);
           userPosition.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
           setTimeout(function() { updateGPSLocation(userPosition); }, 5000);
         },
