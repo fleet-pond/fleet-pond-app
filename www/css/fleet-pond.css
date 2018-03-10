@@ -170,3 +170,43 @@ body {
 .brownRoute {
     color: #841;
 }
+
+#mapFrame {
+    margin-top: 15px;
+    height: calc(100vh - 120px);
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.floating-panel {
+    width:100px;
+    position: absolute;
+    z-index: 5;
+    background-color: #fff;
+    padding: 2px;
+    border: 1px solid rgb(207, 207, 207);
+    text-align: left;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 12px
+}
+.floating-panel span.title, #floating-panel1 span.title {
+    font-family: 'Roboto','sans-serif';
+    font-weight: bold;
+}
+
+#panelShowHide {
+    bottom: 105px;
+    left: 15px;
+    width: 105px !important;
+}
+
+#selectorButton {
+    line-height: 16px;
+    font-size: 12px;
+}

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Fleet Pond - Mobile App</name>
+    <name>Fleet Pond</name>
     <description>
         Fleet Pond is the largest freshwater lake in Hampshire. The nature reserve has 141 acres (57ha) of varied habitats including heathland, woodland, reedbed and marsh, and is home for many species of birds, butterflies, dragonflies and wild flowers.
 		This mobile application makes learning about and exploring Fleet pond fun.
@@ -19,12 +19,35 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/android/icon36.png" />
+        <icon density="mdpi" src="res/android/icon48.png" />
+        <icon density="hdpi" src="res/android/icon72.png" />
+        <icon density="xhdpi" src="res/android/icon96.png" />
+        <icon density="xxhdpi" src="res/android/icon144.png" />
+        <icon density="xxxhdpi" src="res/android/icon196.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <icon height="180" src="res/ios/icon180.png" width="180" />
+        <icon height="60" src="res/ios/icon60.png" width="60" />
+        <icon height="120" src="res/ios/icon120.png" width="120" />
+        <icon height="76" src="res/ios/icon76.png" width="76" />
+        <icon height="152" src="res/ios/icon152.png" width="152" />
+        <icon height="40" src="res/ios/icon40.png" width="40" />
+        <icon height="80" src="res/ios/icon80.png" width="80" />
+        <icon height="57" src="res/ios/icon57.png" width="57" />
+        <icon height="114" src="res/ios/icon114.png" width="114" />
+        <icon height="72" src="res/ios/icon72.png" width="72" />
+        <icon height="144" src="res/ios/icon144.png" width="144" />
+        <icon height="167" src="res/ios/icon167.png" width="167" />
+        <icon height="29" src="res/ios/icon29.png" width="29" />
+        <icon height="58" src="res/ios/icon58.png" width="58" />
+        <icon height="50" src="res/ios/icon50.png" width="50" />
+        <icon height="100" src="res/ios/icon100.png" width="100" />
+        <icon height="167" src="res/ios/icon167.png" width="167" />
     </platform>
-    <engine name="android" spec="^7.0.0" />
+    <engine name="android" spec="^7.1.0" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
