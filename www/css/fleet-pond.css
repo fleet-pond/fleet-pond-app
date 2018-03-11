@@ -1,8 +1,7 @@
 html,body{
 	height: 100%;
 	margin: 0;
-	padding: 0;
-	margin-bottom: 120px;
+	padding: 0 0 120px 0;
 }
 .navbar-nav {
 	margin: 0 !important;
@@ -172,8 +171,9 @@ body {
 }
 
 #mapFrame {
+    height: calc(100vh - 30px);
     margin-top: 15px;
-    height: calc(100vh - 120px);
+    position: relative;
 }
 
 #map {
@@ -201,12 +201,19 @@ body {
 }
 
 #panelShowHide {
-    bottom: 105px;
-    left: 15px;
-    width: 105px !important;
+    bottom: 90px;
+    width: 105px;
 }
 
 #selectorButton {
     line-height: 16px;
     font-size: 12px;
+}
+
+.tab-pane {
+    padding-bottom: 90px;
+}
+
+#selected-points-of-interest {
+    padding-bottom: 0px;
 }
