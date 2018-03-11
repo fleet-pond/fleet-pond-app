@@ -45,7 +45,7 @@
         <div id="mapFrame" class="tab-pane fade in active">
             <div id="panelShowHide" class="floating-panel">
                 <span class="title">Overlay: </span>
-                <button id="selectorButton" onclick="toggleSelector()">Hide</button><br/>
+                <a data-toggle="tab" onclick="toggleSelector();"><i id="iconShowHide" class="fas fa-angle-down fa-fw"></i></a><br/>
                 <div id="mapSelector">
                     <input id="checkBoxOverlay" type="checkbox" onchange="toggleMapItem(pondMap, this.checked)">
                     <span>Map</span><br/>

@@ -192,15 +192,14 @@ function toggleMapItem(item, show) {
 
 function toggleSelector() {
     var selectorElement = document.getElementById("mapSelector");
-    var buttonElement = document.getElementById("selectorButton")
     if (selectorElement.style.display == "none"){
         selectorElement.style.display = "block";
-        buttonElement.innerHTML = "Hide";
     }
     else {
         selectorElement.style.display = "none";
-        buttonElement.innerHTML = "Show";
     }
+    $("#iconShowHide").toggleClass("fa-angle-down");
+    $("#iconShowHide").toggleClass("fa-angle-up");
 }
 
 function updateGPSLocation(userPosition) {

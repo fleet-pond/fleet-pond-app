@@ -202,7 +202,6 @@ body {
 
 #panelShowHide {
     bottom: 90px;
-    width: 105px;
 }
 
 #selectorButton {
@@ -216,4 +215,10 @@ body {
 
 #selected-points-of-interest {
     padding-bottom: 0px;
+}
+
+#iconShowHide {
+    color: #000;
+    font-size: 1.5em;
+    padding-left: 25px;
 }
