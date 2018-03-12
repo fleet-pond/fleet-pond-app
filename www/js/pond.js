@@ -17,7 +17,7 @@ $(function() {
                     item.number + '\');">' + item.number + '&#09; - ' + item.name +
                     '</a><p>' + item.description + '</p>' + routesHTML +
                     '</div><div class="poiPic"><img src="images/' + item.image +
-                    '"/></div><div class="clear"</div></div>');
+                    '.thumbnail"/></div><div class="clear"</div></div>');
 
 
 
