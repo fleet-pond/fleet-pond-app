@@ -70,7 +70,7 @@ html,body{
 }
 /* from the Fleet Pond website CSS */
 a:link, a:visited {
-	color: #27ae60;
+	color: #373737;
 	text-decoration: none;
 }
 /* from the Fleet Pond website CSS */
@@ -80,7 +80,7 @@ body {
 	font-weight: 300;
 	line-height: 1.6;
 	color: #373737;
-	background-color: #ffffff;
+	background-color: #ddd;
 	position: relative;
 	height: 100%;
 }
@@ -99,19 +99,21 @@ body {
     max-height: 600px;
 }
 
+.card {
+	-webkit-box-shadow: 3px 3px 4px 2px #BBB; 
+	box-shadow: 3px 3px 4px 2px #BBB;
+    margin-bottom: 20px;
+	background-color: #fff;
+}
+
+.cardText {
+	padding: 10px;
+}
+
 /* POI CSS */
 .pointOfInterest{
     max-width: 100%;
-    border-color: #333;
-    border-style: solid;
-    border-width: 2px;
-    margin-bottom: 10px;
-}
-
-.poiText {
-    max-width: calc(100% - 90px);
-    float: left;
-    margin-left: 5px;
+    
 }
 
 .poiText > a {
@@ -134,16 +136,12 @@ body {
 }
 
 .poiPic {
-    float: right;
-    border-width: 2px;
-    border-color: #333;
-    border-left-style: solid;
-    width: 82px;
+    float: left;
+	margin-right: 10px;
 }
 
 .poiPic > img {
-    height: 80px;
-    width: 80px;
+    height: 140px;
 }
 
 .clear {
@@ -171,8 +169,7 @@ body {
 }
 
 #mapFrame {
-    height: calc(100vh - 30px);
-    margin-top: 15px;
+    height: calc(100vh);
     position: relative;
 }
 

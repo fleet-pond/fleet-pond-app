@@ -11,13 +11,13 @@ $(function() {
                 item.routes.forEach(function(route) {
                     routesHTML+='<i class="fas fa-map-signs ' + route + 'Route"></i>';
                 });
-                $("#points-of-interest-info").before('<div class="pointOfInterest">' +
-                    '<div class="poiText"><a data-toggle="tab" ' +
+                $("#points-of-interest-info").before('<a data-toggle="tab" ' +
                     'href=#selected-points-of-interest onclick="selectedPoI(\'' +
-                    item.number + '\');">' + item.number + '&#09; - ' + item.name +
-                    '</a><p>' + item.description + '</p>' + routesHTML +
-                    '</div><div class="poiPic"><img src="images/' + item.image +
-                    '.thumbnail"/></div><div class="clear"</div></div>');
+                    item.number + '\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
+                    '.thumbnail"/></div>' +
+                    '<div class="cardText"><b>' + item.number + '&#09; - ' + item.name +
+                    '</b><p>' + item.description + '</p>' + routesHTML +
+                    '</div><div class="clear"</div></div></a>');
 
 
 
@@ -44,10 +44,10 @@ $(function() {
         for (var key in json){
             var getKey = json[key];
             getKey.forEach(function(item){
-                $("#trail-info").before('<b><i class="fas fa-map-signs" style="color:' +
+                $("#trail-info").before('<div class="card"><div class="cardText"><b><i class="fas fa-map-signs" style="color:' +
                     item.color_hex + '"></i> ' + item.trail_colour + ' Route</b><br>' +
                     'Length ' + item.length_KM + 'km (' + item.length_miles +
-                    ' miles)<br><br><p>' + item.description + '</p><hr>');
+                    ' miles)<br><br><p>' + item.description + '</p></div></div>');
             });
         }
     });
