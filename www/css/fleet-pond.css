@@ -3,6 +3,11 @@ html,body{
 	margin: 0;
 	padding: 0 0 120px 0;
 }
+
+h1, h2 {
+	color: #e67e22;
+}
+
 .navbar-nav {
 	margin: 0 !important;
 }
@@ -70,9 +75,10 @@ html,body{
 }
 /* from the Fleet Pond website CSS */
 a:link, a:visited {
-	color: #373737;
+	color: #27ae60;
 	text-decoration: none;
 }
+
 /* from the Fleet Pond website CSS */
 body {
 	font-family: "Open sans", arial, sans-serif;
@@ -108,6 +114,7 @@ body {
 
 .cardText {
 	padding: 10px;
+	color: #373737;
 }
 
 /* POI CSS */
@@ -122,6 +129,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0px;
+    color: 
 }
 
 .poiText > p {

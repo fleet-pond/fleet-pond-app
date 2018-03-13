@@ -24,6 +24,7 @@ $(function() {
                 var position = {lat: item.latitude, lng: item.longitude};
                 var marker = new google.maps.Marker({
                     position: position,
+		    label: item.number,
                     map: map,
                     animation: google.maps.Animation.DROP
                 });
