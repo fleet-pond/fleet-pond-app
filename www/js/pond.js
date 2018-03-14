@@ -11,15 +11,12 @@ $(function() {
                 item.routes.forEach(function(route) {
                     routesHTML+='<i class="fas fa-map-signs ' + route + 'Route"></i>';
                 });
-                $("#points-of-interest-info").before('<a data-toggle="tab" ' +
-                    'href=#selected-points-of-interest onclick="selectedPoI(\'' +
+                $("#points-of-interest-info").before('<a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(\'' +
                     item.number + '\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
                     '.thumbnail"/></div>' +
-                    '<div class="cardText"><b>' + item.number + '&#09; - ' + item.name +
+                    '<div class="cardText poiText"><b>' + item.name +
                     '</b><p>' + item.description + '</p>' + routesHTML +
                     '</div><div class="clear"</div></div></a>');
-
-
 
                 var position = {lat: item.latitude, lng: item.longitude};
                 var marker = new google.maps.Marker({

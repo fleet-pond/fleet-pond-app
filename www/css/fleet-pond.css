@@ -1,53 +1,53 @@
 html,body{
-	height: 100%;
-	margin: 0;
-	padding: 0 0 120px 0;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 120px 0;
 }
 
 h1, h2 {
-	color: #e67e22;
+    color: #373737;
 }
 
 .navbar-nav {
-	margin: 0 !important;
+    margin: 0 !important;
 }
 .overlay {
-	opacity: 0;
-	position: fixed;
-	top: -999em;
-	left: -999em;
-	width: 100%;
-	height: 100%;
-	display: table;
-	background: #fff;
-	-webkit-animation: splash 3s forwards;
+    opacity: 0;
+    position: fixed;
+    top: -999em;
+    left: -999em;
+    width: 100%;
+    height: 100%;
+    display: table;
+    background: #fff;
+    -webkit-animation: splash 3s forwards;
     animation: splash 3s forwards;
 }
 .overlay-inner {
-	display:table-cell;
-	vertical-align:middle;
-	text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
 }
 .navbar {
     background-color: white;
     overflow: hidden;
     position: fixed;
     bottom: 0;
-	left: 0;
+    left: 0;
     width: 100%;
     box-shadow: 0px -3px rgba(180,180,180,0.5);
-	text-align: center;
+    text-align: center;
 }
 .navbar a {
-	float: left;
-	display: block;
-	color: black;
-	text-align: center;
-	text-decoration: none;
-	font-size: 17px;
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
 }
 .nav-item a:hover {
-	color: #e67e22 !important;
+    color: #e67e22 !important;
 }
 .navbar-nav {
     float:none;
@@ -60,79 +60,73 @@ h1, h2 {
     float:none;
 }
 .affix {
-	bottom: 0;
-	width: 100%;
-	z-index: 9999 !important;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999 !important;
 }
 
 .affix + .container-fluid {
-	padding-bottom: 70px;
+    padding-bottom: 70px;
 }
 @media (max-width: 979px) {
-	.x-navbar-fixed-top, .x-navbar-fixed-left, .x-navbar-fixed-right {
-		position: fixed;
-	}
+    .x-navbar-fixed-top, .x-navbar-fixed-left, .x-navbar-fixed-right {
+        position: fixed;
+    }
 }
 /* from the Fleet Pond website CSS */
 a:link, a:visited {
-	color: #27ae60;
-	text-decoration: none;
+    color: #070;
+    text-decoration: none;
 }
 
 /* from the Fleet Pond website CSS */
 body {
-	font-family: "Open sans", arial, sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-	line-height: 1.6;
-	color: #373737;
-	background-color: #ddd;
-	position: relative;
-	height: 100%;
+    font-family: "Open sans", arial, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #373737;
+    background-color: #f0fff0;
+    position: relative;
+    height: 100%;
 }
 /* end */
 #poi-image {
-	width: 100%;
-	object-fit: contain;
+    width: 100%;
+    object-fit: contain;
 }
 #pond-image {
-	height: auto;
-	width: auto;
+    height: auto;
+    width: auto;
 }
 #mapScroller {
-	overflow: auto;
+    overflow: auto;
     max-width: 100%;
     max-height: 600px;
 }
 
 .card {
-	-webkit-box-shadow: 3px 3px 4px 2px #BBB; 
-	box-shadow: 3px 3px 4px 2px #BBB;
+    -webkit-box-shadow: 3px 3px 4px 2px #BBB;
+    box-shadow: 3px 3px 4px 2px #BBB;
     margin-bottom: 20px;
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .cardText {
-	padding: 10px;
-	color: #373737;
+    padding: 10px;
+    color: #373737;
 }
+
+
 
 /* POI CSS */
 .pointOfInterest{
     max-width: 100%;
-    
+
 }
 
-.poiText > a {
+.poiText > b, .poiText > p {
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0px;
-    color: 
-}
-
-.poiText > p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -145,11 +139,11 @@ body {
 
 .poiPic {
     float: left;
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 .poiPic > img {
-    height: 140px;
+    height: 95px;
 }
 
 .clear {
@@ -178,7 +172,11 @@ body {
 
 #mapFrame {
     height: calc(100vh);
-    position: relative;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 }
 
 #map {
@@ -187,26 +185,20 @@ body {
 }
 
 .floating-panel {
-    width:100px;
     position: absolute;
     z-index: 5;
     background-color: #fff;
-    padding: 2px;
+    padding: 2px 10px;
     border: 1px solid rgb(207, 207, 207);
     text-align: left;
+    bottom: 85px;
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
-    padding-left: 4px;
-    padding-right: 4px;
-    font-size: 12px
+    font-size: 12px;
 }
 .floating-panel span.title, #floating-panel1 span.title {
     font-family: 'Roboto','sans-serif';
     font-weight: bold;
-}
-
-#panelShowHide {
-    bottom: 90px;
 }
 
 #selectorButton {
@@ -215,7 +207,7 @@ body {
 }
 
 .tab-pane {
-    padding-bottom: 90px;
+    padding-bottom: 85px;
 }
 
 #selected-points-of-interest {
