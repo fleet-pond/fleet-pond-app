@@ -12,7 +12,7 @@ $(function() {
                     routesHTML+='<i class="fas fa-map-signs ' + route + 'Route"></i>';
                 });
                 $("#points-of-interest-info").before('<a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(\'' +
-                    item.number + '\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
+                    item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
                     '.thumbnail"/></div>' +
                     '<div class="cardText poiText"><b>' + item.name +
                     '</b><p>' + item.description + '</p>' + routesHTML +
@@ -60,9 +60,10 @@ $(function() {
     })
 });
 
-function selectedPoI(number) {
+function selectedPoI(number, link) {
     $(poi.points_of_interest).each(function(index, element) {
         if(element.number == number) {
+            $("#poi-back").attr("href", link);
             $("#poi-heading").html(element.name);
             $("#poi-name").html('Point of Interest ' + number);
             $("#poi-image").attr("src", 'images/' + element.image);
@@ -215,4 +216,10 @@ function updateGPSLocation(userPosition) {
         console.log("NOPE - unavailable");
         userPosition.setMap(null);
     }
+}
+
+function scrollToTop() {
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 180);
 }
