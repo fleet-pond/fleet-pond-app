@@ -18,7 +18,7 @@ $(function() {
                 var position = {lat: item.latitude, lng: item.longitude};
                 var marker = new google.maps.Marker({
                     position: position,
-		    label: item.number,
+		            label: item.number,
                     map: map,
                     animation: google.maps.Animation.DROP
                 });
@@ -39,10 +39,12 @@ $(function() {
         for (var key in json){
             var getKey = json[key];
             getKey.forEach(function(item){
-                $("#trail-info").before('<div class="card"><div class="cardText"><b><i class="fas fa-map-signs" style="color:' +
-                    item.color_hex + '"></i> ' + item.trail_colour + ' Route</b><br>' +
-                    'Length ' + item.length_KM + 'km (' + item.length_miles +
-                    ' miles)<br><br><p>' + item.description + '</p></div></div>');
+                $("#trail-info").before('<div class="card"><div class="cardText">\
+                    <div class="float half-width"><b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b>\
+                    </div><div class="float half-width text-right"><a data-toggle="tab" href="#mapFrame" onclick="showRoute(\'' + item.trail_colour + '\');" aria-expanded="false">\
+                    <i class="fas fa-map" style="color:' + item.color_hex + '"></i> View on map</a><br></div>' +
+                    'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
+                    <br><br><p>' + item.description + '</p></div></div>');
             });
         }
     });
@@ -184,11 +186,11 @@ function initMap() {
     });
 
 
-    bluePath.setMap(map);
-    yellowPath.setMap(map);
-    redPath.setMap(map);
-    greenPath.setMap(map);
-    brownPath.setMap(map);
+    $("#checkBoxBlue").click();
+    $("#checkBoxYellow").click();
+    $("#checkBoxRed").click();
+    $("#checkBoxGreen").click();
+    $("#checkBoxBrown").click();
 
     updateGPSLocation(userPosition);
     userPosition.setMap(map);
@@ -239,10 +241,25 @@ function scrollToTop() {
 }
 
 function getRoutesHTML(item) {
-    console.log(item.routes);
     var routesHTML = ""
     item.routes.forEach(function(route) {
-        routesHTML+='<i class="fas fa-map-signs ' + route + 'Route availableRoutes"></i>';
+        routesHTML+='<i class="fas fa-map-signs ' + route + 'Route available-routes"></i>';
     });
     return routesHTML;
+}
+
+function showRoute(route) {
+    $("#mapMenuItem").click();
+
+    checkShowRoute("Blue", route);
+    checkShowRoute("Yellow", route);
+    checkShowRoute("Red", route);
+    checkShowRoute("Green", route);
+    checkShowRoute("Brown", route);
+}
+
+function checkShowRoute(route, shownRoute) {
+    if ($('#checkBox' + route).prop('checked') != (route == shownRoute)) {
+        $("#checkBox" + route).click();
+    }
 }

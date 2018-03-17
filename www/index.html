@@ -33,7 +33,7 @@
     <div class="container-fluid">
         <ul class="nav navbar-nav">
             <li class="nav-item"><a data-toggle="tab" href="#trails" onclick="scrollToTop();"><i class="fas fa-map-signs fa-2x fa-fw"></i><br>Trails</a></li>
-            <li class="nav-item active"><a data-toggle="tab" href="#mapFrame" onclick="scrollToTop();"><i class="fas fa-map fa-2x fa-fw"></i><br>Map</a></li>
+            <li class="nav-item active"><a id="mapMenuItem" data-toggle="tab" href="#mapFrame" onclick="scrollToTop();"><i class="fas fa-map fa-2x fa-fw"></i><br>Map</a></li>
             <li class="nav-item"><a data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();"><i class="fas fa-map-marker-alt fa-2x fa-fw"></i><br>Points</a></li>
             <li class="nav-item"><a data-toggle="tab" href="#info" onclick="scrollToTop();"><i class="fas fa-info fa-2x fa-fw"></i><br>Info</a></li>
         </ul>
@@ -50,15 +50,15 @@
                     <input id="checkBoxOverlay" type="checkbox" onchange="toggleMapItem(pondMap, this.checked)">
                     <span>Overlay</span><br/>
                     <span class="title">Routes:</span><br/>
-                    <input id="checkBoxRed" type="checkbox" checked onchange="toggleMapItem(redPath, this.checked)">
+                    <input id="checkBoxRed" type="checkbox" onchange="toggleMapItem(redPath, this.checked)">
                     <span>Red (1km)</span><br/>
-                    <input id="checkBoxYellow" type="checkbox" checked onchange="toggleMapItem(yellowPath, this.checked)">
+                    <input id="checkBoxYellow" type="checkbox" onchange="toggleMapItem(yellowPath, this.checked)">
                     <span>Yellow (3km)</span><br/>
-                    <input id="checkBoxBlue" type="checkbox" checked onchange="toggleMapItem(bluePath, this.checked)">
+                    <input id="checkBoxBlue" type="checkbox" onchange="toggleMapItem(bluePath, this.checked)">
                     <span>Blue (4km)</span><br/>
-                    <input id="checkBoxGreen" type="checkbox" checked onchange="toggleMapItem(greenPath, this.checked)">
+                    <input id="checkBoxGreen" type="checkbox" onchange="toggleMapItem(greenPath, this.checked)">
                     <span>Green</span><br/>
-                    <input id="checkBoxBrown" type="checkbox" checked onchange="toggleMapItem(brownPath, this.checked)">
+                    <input id="checkBoxBrown" type="checkbox" onchange="toggleMapItem(brownPath, this.checked)">
                     <span>Brown</span>
                 </div>
             </div>
@@ -123,17 +123,17 @@
         <div id="selected-points-of-interest" class="tab-pane fade in">
 
             <div id="navigate-pois">
-                <div class="switch-poi" id="previous-poi">
+                <div class="float switch-poi" id="previous-poi">
                     <a id="poi-previous">
                         <i class="fas fa-angle-left"></i>
                         Previous
                     </a>
                     <!-- <a id="poi-previous" href="#points-of-interest">Previous</a> -->
                 </div>
-                <div id="current-poi">
+                <div class="float" id="current-poi">
                     <b id="poi-name"></b>
                 </div>
-                <div class="switch-poi" id="next-poi">
+                <div class="float switch-poi text-right" id="next-poi">
                     <a id="poi-next">
                         Next
                         <i class="fas fa-angle-right"></i>

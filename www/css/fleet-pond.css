@@ -231,7 +231,7 @@ body {
     width: 100%;
 }
 
-#navigate-pois>div {
+.float {
     float: left;
     min-height: 1px;
 }
@@ -245,7 +245,7 @@ body {
     width: 50%;
 }
 
-#next-poi {
+.text-right {
     text-align: right;
 }
 
@@ -253,6 +253,10 @@ body {
     margin-top: 0px;
 }
 
-.availableRoutes {
+.available-routes {
     padding-right: 10px;
+}
+
+.half-width {
+    width: 50%;
 }
