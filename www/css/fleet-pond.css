@@ -224,3 +224,35 @@ body {
 .active {
     transition-delay: 0.2s;
 }
+
+#navigate-pois{
+    display: inline-block;
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
+#navigate-pois>div {
+    float: left;
+    min-height: 1px;
+}
+
+.switch-poi {
+    width: 25%;
+}
+
+#current-poi {
+    text-align: center;
+    width: 50%;
+}
+
+#next-poi {
+    text-align: right;
+}
+
+#poi-heading {
+    margin-top: 0px;
+}
+
+.availableRoutes {
+    padding-right: 10px;
+}

@@ -7,16 +7,13 @@ $(function() {
         for (var key in json) {
             var getKey = json[key];
             getKey.forEach(function(item) {
-                var routesHTML = "";
-                item.routes.forEach(function(route) {
-                    routesHTML+='<i class="fas fa-map-signs ' + route + 'Route"></i>';
-                });
+                var routesHTML = getRoutesHTML(item);
                 $("#points-of-interest-info").before('<a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(\'' +
                     item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
                     '.thumbnail"/></div>' +
                     '<div class="cardText poiText"><b>' + item.name +
                     '</b><p>' + item.description + '</p>' + routesHTML +
-                    '</div><div class="clear"</div></div></a>');
+                    '</div><div class="clear"></div></div></a>');
 
                 var position = {lat: item.latitude, lng: item.longitude};
                 var marker = new google.maps.Marker({
@@ -63,11 +60,28 @@ $(function() {
 function selectedPoI(number, link) {
     $(poi.points_of_interest).each(function(index, element) {
         if(element.number == number) {
+            if (index == 0) {
+                $("#poi-previous").hide();
+                $("#poi-next").show();
+                $("#poi-next").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
+            }
+            else if (index == poi.points_of_interest.length - 1) {
+                $("#poi-previous").show();
+                $("#poi-next").hide();
+                $("#poi-previous").attr("href", "javascript:selectedPoI(" + poi.points_of_interest[index - 1].number + ");");
+            }
+            else {
+                $("#poi-previous").show();
+                $("#poi-next").show();
+                $("#poi-previous").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index - 1].number + "');");
+                $("#poi-next").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
+            }
+
+            $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showOrHide();"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
             $("#poi-back").attr("href", link);
-            $("#poi-heading").html(element.name);
-            $("#poi-name").html('Point of Interest ' + number);
+            $("#poi-name").html("Point of interest " + number);
             $("#poi-image").attr("src", 'images/' + element.image);
-            $("#poi-description").html(element.description);
+            $("#poi-description").html("<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
             showOrHide();
         }
     });
@@ -222,4 +236,13 @@ function scrollToTop() {
     setTimeout(function() {
         window.scrollTo(0, 0);
     }, 180);
+}
+
+function getRoutesHTML(item) {
+    console.log(item.routes);
+    var routesHTML = ""
+    item.routes.forEach(function(route) {
+        routesHTML+='<i class="fas fa-map-signs ' + route + 'Route availableRoutes"></i>';
+    });
+    return routesHTML;
 }

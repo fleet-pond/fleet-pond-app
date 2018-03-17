@@ -67,40 +67,42 @@
 
         <div id="info" class="tab-pane fade in">
             <h1>Information</h1>
+            <div class="card">
+                <div class="cardText">
+                    <p>
+                        Welcome to the Fleet Pond companion app.
+                        You can use this app to plan a walk around the pond, or explore points of interest when you visit.
+                        Use the Map tab to view an interactive map of the pond, with trails and points of interested marked.
+                        Try the Trails tab to get more information on each trail, including the length of the trail and what
+                        points of interest lie along its route.
+                        From the Info tab, you can find useful links for the Fleet Pond society website and our social media.
+                    </p>
 
-            <p>
-                Welcome to the Fleet Pond companion app.
-                You can use this app to plan a walk around the pond, or explore points of interest when you visit.
-                Use the Map tab to view an interactive map of the pond, with trails and points of interested marked.
-                Try the Trails tab to get more information on each trail, including the length of the trail and what
-                points of interest lie along its route.
-                From the Info tab, you can find useful links for the Fleet Pond society website and our social media.
-            </p>
+                    <p>
+                        <a href="http://fleetpond.org.uk/about-fleet-pond/" target="_blank"><i class="fas fa-external-link-alt link"></i> About Fleet Pond</a>
+                        <br>
+                        <a href="http://fleetpond.org.uk/history-of-the-pond/" target="_blank"><i class="fas fa-external-link-alt link"></i> History of Fleet Pond</a>
+                        <br>
+                        <a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/" target="_blank"><i class="fas fa-external-link-alt link"></i> Directions and Parking</a>
+                        <br>
+                        <a href="http://fleetpond.org.uk/news-and-reports/news/" target="_blank"><i class="fas fa-external-link-alt link"></i> Fleet Pond News</a>
+                    </p>
 
-            <p>
-                <a href="http://fleetpond.org.uk/about-fleet-pond/" target="_blank"><i class="fas fa-external-link-alt link"></i> About Fleet Pond</a>
-                <br>
-                <a href="http://fleetpond.org.uk/history-of-the-pond/" target="_blank"><i class="fas fa-external-link-alt link"></i> History of Fleet Pond</a>
-                <br>
-                <a href="http://fleetpond.org.uk/visit-fleet-pond/directions-parking/" target="_blank"><i class="fas fa-external-link-alt link"></i> Directions and Parking</a>
-                <br>
-                <a href="http://fleetpond.org.uk/news-and-reports/news/" target="_blank"><i class="fas fa-external-link-alt link"></i> Fleet Pond News</a>
-            </p>
+                    <hr/>
 
-            <hr/>
-
-            <p>
-                <a href="https://www.facebook.com/FleetPondSociety" target="_blank"><i class="fab fa-facebook-square link"></i> Like us on Facebook</a>
-                <br>
-                <a href="https://twitter.com/FleetPondSoc" target="_blank"><i class="fab fa-twitter-square link"></i> Follow us on Twitter</a>
-                <br>
-                <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html" target="_blank"><i class="fab fa-tripadvisor link"></i> Visit us on Trip Advisor</a>
-                <br>
-                <a href="https://www.flickr.com/groups/1501643@N22/" target="_blank"><i class="fab fa-flickr link"></i> Check us out on Flickr</a>
-                <br>
-                <a href="https://fleetpond.wordpress.com/" target="_blank"><i class="fab fa-wordpress link"></i> Read our blog</a>
-            </p>
-
+                    <p>
+                        <a href="https://www.facebook.com/FleetPondSociety" target="_blank"><i class="fab fa-facebook-square link"></i> Like us on Facebook</a>
+                        <br>
+                        <a href="https://twitter.com/FleetPondSoc" target="_blank"><i class="fab fa-twitter-square link"></i> Follow us on Twitter</a>
+                        <br>
+                        <a href="http://www.tripadvisor.co.uk/Attraction_Review-g503830-d7238142-Reviews-Fleet_Pond-Fleet_Hampshire_England.html" target="_blank"><i class="fab fa-tripadvisor link"></i> Visit us on Trip Advisor</a>
+                        <br>
+                        <a href="https://www.flickr.com/groups/1501643@N22/" target="_blank"><i class="fab fa-flickr link"></i> Check us out on Flickr</a>
+                        <br>
+                        <a href="https://fleetpond.wordpress.com/" target="_blank"><i class="fab fa-wordpress link"></i> Read our blog</a>
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div id="trails" class="tab-pane fade in">
@@ -120,26 +122,37 @@
 
         <div id="selected-points-of-interest" class="tab-pane fade in">
 
-            <br>
+            <div id="navigate-pois">
+                <div class="switch-poi" id="previous-poi">
+                    <a id="poi-previous">
+                        <i class="fas fa-angle-left"></i>
+                        Previous
+                    </a>
+                    <!-- <a id="poi-previous" href="#points-of-interest">Previous</a> -->
+                </div>
+                <div id="current-poi">
+                    <b id="poi-name"></b>
+                </div>
+                <div class="switch-poi" id="next-poi">
+                    <a id="poi-next">
+                        Next
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                    <!-- <a id="poi-next" href="#points-of-interest">Next</a> -->
+                </div>
+                <div class="clear"></div>
+            </div>
 
-            <h2 style="display:inline;">
-                <a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showOrHide();">
-                    <i class="fas fa-angle-double-left"></i>
-                </a>
-            </h2>
-            <h2 style="display:inline;" id="poi-heading"></h2>
+            <h2 id="poi-heading"></h2>
 
-            <br>
-
-            <b id="poi-name"></b>
-
-            <br>
-
-            <div id="poi-image-container"><img id="poi-image"></div>
-
-            <br><br>
-
-            <p id="poi-description"></p>
+            <div class="card">
+                <div id="poi-image-container"><img id="poi-image"></div>
+            </div>
+            <div class="card">
+                <div class="cardText">
+                    <p id="poi-description"></p>
+                </div>
+            </div>
 
         </div>
 
