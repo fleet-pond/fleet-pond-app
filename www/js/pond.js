@@ -1,4 +1,5 @@
 var poi;
+var showDelay = 180;
 $(function() {
     $.getJSON( "points-of-interest.json", {
         format: "json"
@@ -65,37 +66,39 @@ function selectedPoI(number, link) {
             if (index == 0) {
                 $("#poi-previous").hide();
                 $("#poi-next").show();
-                $("#poi-next").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
+                $("#poi-next").attr("onclick", "selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
             }
             else if (index == poi.points_of_interest.length - 1) {
                 $("#poi-previous").show();
                 $("#poi-next").hide();
-                $("#poi-previous").attr("href", "javascript:selectedPoI(" + poi.points_of_interest[index - 1].number + ");");
+                $("#poi-previous").attr("onclick", "selectedPoI('" + poi.points_of_interest[index - 1].number + "');");
             }
             else {
                 $("#poi-previous").show();
                 $("#poi-next").show();
-                $("#poi-previous").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index - 1].number + "');");
-                $("#poi-next").attr("href", "javascript:selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
+                $("#poi-previous").attr("onclick", "selectedPoI('" + poi.points_of_interest[index - 1].number + "');");
+                $("#poi-next").attr("onclick", "selectedPoI('" + poi.points_of_interest[index + 1].number + "');");
             }
 
-            $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showOrHide();"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
+            $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showNavBar(true);"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
             $("#poi-back").attr("href", link);
             $("#poi-name").html("Point of interest " + number);
             $("#poi-image").attr("src", 'images/' + element.image);
             $("#poi-description").html("<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
-            showOrHide();
+            showNavBar(false);
         }
     });
 };
 
-function showOrHide() {
+function showNavBar(show) {
     var x = document.getElementById("navigation-bar");
-    if ($("#selected-points-of-interest").hasClass("active")) {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+    setTimeout(function() {
+        if (show) {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }, showDelay);
 }
 
 var map;
@@ -237,7 +240,7 @@ function updateGPSLocation(userPosition) {
 function scrollToTop() {
     setTimeout(function() {
         window.scrollTo(0, 0);
-    }, 180);
+    }, showDelay);
 }
 
 function getRoutesHTML(item) {

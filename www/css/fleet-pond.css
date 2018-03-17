@@ -195,7 +195,7 @@ body {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     font-size: 12px;
-    width: 105px;
+    width: 110px;
 }
 .floating-panel span.title, #floating-panel1 span.title {
     font-family: 'Roboto','sans-serif';
@@ -259,4 +259,8 @@ body {
 
 .half-width {
     width: 50%;
+}
+
+a {
+    cursor: pointer;
 }
