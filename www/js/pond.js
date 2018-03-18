@@ -110,20 +110,12 @@ var greenPath;
 var brownPath;
 var overlayOn=true;
 var gpsOptions = { timeout: 10000 };
+var consecutiveLocationFails = 0;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center:{lat: 51.2860, lng: -0.823845},
         zoom: 15
-    });
-
-    userPosition = new google.maps.Circle({
-        strokeColor: '#4E4',
-        strokeOpacity: 1,
-        strokeWeight: 6,
-        fillColor: '#4E4',
-        fillOpacity: 1,
-        radius: 8
     });
 
     bluePath = new google.maps.Polyline({
@@ -188,15 +180,24 @@ function initMap() {
         });
     });
 
-
     $("#checkBoxBlue").click();
     $("#checkBoxYellow").click();
     $("#checkBoxRed").click();
     $("#checkBoxGreen").click();
     $("#checkBoxBrown").click();
 
-    updateGPSLocation(userPosition);
-    userPosition.setMap(map);
+    var userPositionGIF = new google.maps.Marker({
+        map: map,
+        icon: {
+            url: 'images/location_pulse_50.gif',
+            size: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(25, 25)
+        }
+    });
+
+    userPositionGIF.setMap(map);
+    updateGPSLocation(userPositionGIF);
 }
 
 function toggleMapItem(item, show) {
@@ -223,12 +224,19 @@ function toggleSelector() {
 function updateGPSLocation(userPosition) {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(pos) {
-            userPosition.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
+            console.log(pos.coords.latitude + "\n" + pos.coords.longitude);
+            userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
             setTimeout(function() { updateGPSLocation(userPosition); }, 5000);
         },
         function() {
             console.log("NOPE - timeout")
-            userPosition.setMap(null);
+            consecutiveLocationFails += 1;
+            if (consecutiveLocationFails < 10) {
+                setTimeout(function() { updateGPSLocation(userPosition); }, 5000);
+            }
+            else {
+                userPosition.setMap(null);
+            }
         }, gpsOptions);
     }
     else {
