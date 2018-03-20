@@ -264,3 +264,23 @@ body {
 a {
     cursor: pointer;
 }
+
+#moveMap {
+    background: none;
+    border: none;
+    right: 0;
+    bottom: 202px;
+    width:inherit;
+}
+#moveMap>button {
+    background: white;
+    opacity: 1;
+    border: solid 1px #ccc;
+    margin-bottom: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+#goToGPS {
+    display: none;
+}

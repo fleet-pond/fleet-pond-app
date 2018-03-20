@@ -4,6 +4,9 @@ var poiMarkers = [];
 var benchMarkers = [];
 var activeInfoWindow = null;
 var infoWindows = [];
+var gpsLocation = null;
+var initialCenter = {lat: 51.2860, lng: -0.823845};
+var initialZoom = 15;
 
 $(function() {
     $.getJSON( "points-of-interest.json", {
@@ -67,9 +70,7 @@ $(function() {
         var position = {lat: element.lat, lng: element.lng};
         benchMarkers.push(new google.maps.Marker({
             position: position,
-            icon: "http://maps.google.com/mapfiles/ms/icons/blue.png",
-            size: new google.maps.Size(60, 100),
-            animation: google.maps.Animation.DROP
+            icon: "http://maps.google.com/mapfiles/ms/icons/blue.png"
         }));
     });
 
@@ -138,8 +139,8 @@ var consecutiveLocationFails = 0;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center:{lat: 51.2860, lng: -0.823845},
-        zoom: 15
+        center: initialCenter,
+        zoom: initialZoom
     });
 
     bluePath = new google.maps.Polyline({
@@ -251,6 +252,7 @@ function updateGPSLocation(userPosition) {
         navigator.geolocation.getCurrentPosition(function(pos) {
             console.log(pos.coords.latitude + "\n" + pos.coords.longitude);
             userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
+            $("#goToGPS").css('display', 'inline-block');
             setTimeout(function() { updateGPSLocation(userPosition); }, 3000);
         },
         function() {
@@ -310,5 +312,16 @@ function toggleMarkers(markers, show) {
 function clickMarker(marker) {
     if (infoWindows[activeInfoWindow].getMap() != undefined) {
         google.maps.event.trigger(marker, 'click');
+    }
+}
+
+function resetMap() {
+    map.setCenter(initialCenter);
+    map.setZoom(initialZoom);
+}
+
+function goToGPS() {
+    if (gpsLocation != null) {
+        map.setCenter(gpsLocation);
     }
 }
