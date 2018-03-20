@@ -27,7 +27,6 @@ $(function() {
                 var position = {lat: item.latitude, lng: item.longitude};
                 poiMarkers.push(new google.maps.Marker({
                     position: position,
-                    // icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
 		            label: item.number,
                     map: map,
                     animation: google.maps.Animation.DROP
@@ -40,11 +39,9 @@ $(function() {
                     if (activeInfoWindow != null) {
                         infoWindows[activeInfoWindow].close();
                     }
-                    console.log(activeInfoWindow);
                     infoWindows[pointer].open(map, poiMarkers[pointer]);
                     infoWindows[pointer].setMap(map);
                     activeInfoWindow = pointer;
-                    console.log(activeInfoWindow);
                 })
             });
         }
@@ -253,6 +250,7 @@ function updateGPSLocation(userPosition) {
             console.log(pos.coords.latitude + "\n" + pos.coords.longitude);
             userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
             $("#goToGPS").css('display', 'inline-block');
+            gpsLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
             setTimeout(function() { updateGPSLocation(userPosition); }, 3000);
         },
         function() {
@@ -304,7 +302,6 @@ function checkShowRoute(route, shownRoute) {
 
 function toggleMarkers(markers, show) {
     for (i = 0; i < markers.length; i++) {
-        console.log(markers[i])
         toggleMapItem(markers[i], show);
     }
 }
@@ -321,6 +318,7 @@ function resetMap() {
 }
 
 function goToGPS() {
+    console.log(gpsLocation);
     if (gpsLocation != null) {
         map.setCenter(gpsLocation);
     }
