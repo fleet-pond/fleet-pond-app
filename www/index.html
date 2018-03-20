@@ -50,6 +50,10 @@
                 <div id="mapSelector">
                     <input id="checkBoxOverlay" type="checkbox" onchange="toggleMapItem(pondMap, this.checked)">
                     <span>Overlay</span><br/>
+                    <input id="checkBoxInterests" type="checkbox" onchange="toggleMarkers(poiMarkers, this.checked)">
+                    <span>Interests</span><br/>
+                    <input id="checkBoxBenches" type="checkbox" onchange="toggleMarkers(benchMarkers, this.checked)">
+                    <span>Benches</span><br/>
                     <span class="title">Routes:</span><br/>
                     <input id="checkBoxRed" type="checkbox" onchange="toggleMapItem(redPath, this.checked)">
                     <span>Red (1km)</span><br/>
