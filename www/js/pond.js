@@ -140,46 +140,11 @@ function initMap() {
         zoom: initialZoom
     });
 
-    bluePath = new google.maps.Polyline({
-        path: bluePathCoodinates,
-        geodesic: true,
-        strokeColor: '#0000FF',
-        strokeOpacity: 1.0,
-        strokeWeight: 11
-    });
-
-    yellowPath = new google.maps.Polyline({
-        path: yellowPathCoodinates,
-        geodesic: true,
-        strokeColor: '#EEEE44',
-        strokeOpacity: 1.0,
-        strokeWeight: 6
-    });
-
-    redPath = new google.maps.Polyline({
-        path: redPathCoordinates,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 3
-    });
-
-    greenPath = new google.maps.Polyline({
-        path: greenPathCoordinates,
-        geodesic: true,
-        strokeColor: '#008000',
-        strokeOpacity: 1.0,
-        strokeWeight: 3
-    });
-
-    brownPath = new google.maps.Polyline({
-        path: brownPathCoordinates,
-        geodesic: true,
-        strokeColor: '#8B4513',
-        strokeOpacity: 1.0,
-        strokeWeight: 3
-    });
-
+    bluePath = createPath(bluePathCoodinates, '#0000FF');
+    yellowPath = createPath(yellowPathCoodinates, '#EEEE44');
+    redPath = createPath(redPathCoordinates, '#FF0000');
+    greenPath = createPath(greenPathCoordinates, '#008000');
+    brownPath = createPath(brownPathCoordinates, '#8B4513');
 
     var imageBounds = {
         north: 51.292000,
@@ -221,6 +186,32 @@ function initMap() {
 
     userPositionGIF.setMap(map);
     updateGPSLocation(userPositionGIF);
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        var zoom = map.getZoom();
+        console.log(zoom);
+        if (zoom <= 12) {
+            updatePathWidths(1);
+        }
+        else if (zoom <= 14) {
+            updatePathWidths(2);
+        }
+        else if (zoom <= 15) {
+            updatePathWidths(3);
+        }
+        else if (zoom <= 16) {
+            updatePathWidths(4);
+        }
+        else if (zoom <= 18) {
+            updatePathWidths(8);
+        }
+        else if (zoom <= 19) {
+            updatePathWidths(12);
+        }
+        else {
+            updatePathWidths(16);
+        }
+    });
 }
 
 function toggleMapItem(item, show) {
@@ -322,4 +313,22 @@ function goToGPS() {
     if (gpsLocation != null) {
         map.setCenter(gpsLocation);
     }
+}
+function createPath(pathCoordinates, color) {
+    var newPath = new google.maps.Polyline({
+        path: pathCoordinates,
+        geodesic: true,
+        strokeColor: color,
+        strokeOpacity: 1,
+        strokeWeight: 4
+    });
+    return newPath;
+}
+
+function updatePathWidths(strokeWeight) {
+    bluePath.setOptions({strokeWeight: strokeWeight});
+    yellowPath.setOptions({strokeWeight: strokeWeight});
+    redPath.setOptions({strokeWeight: strokeWeight});
+    greenPath.setOptions({strokeWeight: strokeWeight});
+    brownPath.setOptions({strokeWeight: strokeWeight});
 }
