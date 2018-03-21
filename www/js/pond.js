@@ -140,8 +140,8 @@ function initMap() {
         zoom: initialZoom
     });
 
-    bluePath = createPath(bluePathCoodinates, '#0000FF');
-    yellowPath = createPath(yellowPathCoodinates, '#EEEE44');
+    bluePath = createPath(bluePathCoordinates, '#0000FF');
+    yellowPath = createPath(yellowPathCoordinates, '#EEEE44');
     redPath = createPath(redPathCoordinates, '#FF0000');
     greenPath = createPath(greenPathCoordinates, '#008000');
     brownPath = createPath(brownPathCoordinates, '#8B4513');
@@ -314,6 +314,7 @@ function goToGPS() {
         map.setCenter(gpsLocation);
     }
 }
+
 function createPath(pathCoordinates, color) {
     var newPath = new google.maps.Polyline({
         path: pathCoordinates,
