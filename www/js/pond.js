@@ -203,13 +203,13 @@ function initMap() {
             updatePathWidths(4);
         }
         else if (zoom <= 18) {
-            updatePathWidths(8);
+            updatePathWidths(6);
         }
         else if (zoom <= 19) {
-            updatePathWidths(12);
+            updatePathWidths(8);
         }
         else {
-            updatePathWidths(16);
+            updatePathWidths(10);
         }
     });
 }
@@ -298,7 +298,7 @@ function toggleMarkers(markers, show) {
 }
 
 function clickMarker(marker) {
-    if (infoWindows[activeInfoWindow].getMap() != undefined) {
+    if (activeInfoWindow != undefined) {
         google.maps.event.trigger(marker, 'click');
     }
 }
