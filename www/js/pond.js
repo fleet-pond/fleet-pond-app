@@ -18,8 +18,8 @@ $(function() {
             getKey.forEach(function(item) {
                 var routesHTML = getRoutesHTML(item);
                 $("#points-of-interest-info").before('<a data-toggle="tab" href="#selected-points-of-interest" onclick="selectedPoI(\'' +
-                    item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.image +
-                    '.thumbnail"/></div>' +
+                    item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.thumbnail +
+                    '"/></div>' +
                     '<div class="cardText poiText"><b>' + item.name +
                     '</b><p>' + item.description + '</p>' + routesHTML +
                     '</div><div class="clear"></div></div></a>');
@@ -104,7 +104,7 @@ function selectedPoI(number, link) {
             $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showNavBar(true);"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
             $("#poi-back").attr("href", link);
             $("#poi-name").html("Point of interest " + number);
-            $("#poi-image").attr("src", 'images/' + element.image);
+            $("#poi-image").attr("src", 'images/' + element.image[0]);
             var viewOnMapHTML = '<a data-toggle="tab" href="#mapFrame" onclick="clickMarker(poiMarkers[' + index + ']);showNavBar(true);$(\'#mapMenuItem\')" ><i class="fas fa-map"></i> View on map</a><br>';
             $("#poi-description").html(viewOnMapHTML + "<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
             showNavBar(false);
