@@ -1,4 +1,4 @@
-{
+var poi = {
   "points_of_interest" : [
     { "number" : "1",  "latitude" : 51.29059937, "longitude" : -0.81860483, "image" : ["01-0-4471.mobile.jpg"], "thumbnail" : "01-0-4471.jpg.thumbnail", "routes" : ["red", "yellow", "blue", "green"], "name" : "Car park map board", "description" : "Path to the Dry Heath:  Look for plants that thrive on an open heath.Can you spot a bat, Adder, Grass Snake, Slow Worm or Common Lizard?" },
     { "number" : "2",  "latitude" : 51.28971119, "longitude" : -0.81959724, "image" : ["image-placeholder.png"], "thumbnail" : "image-placeholder.png.thumbnail", "routes" : ["red", "yellow", "blue"], "name" : "Picnic Site: totem pole", "description" : "Can you identify the animals carved on the benches?  The totem poles and carved wood help to provide a perfect breeding site for woodpeckers and other bird species. " },
@@ -34,4 +34,4 @@
 	{ "number" : "26", "latitude" : 51.29046099, "longitude" : -0.82176983, "image" : ["image-placeholder.png"], "thumbnail" : "image-placeholder.png.thumbnail", "routes" : ["red"], "name" : "Overview of the heath", "description" : "Take the upper path and look through the trees over to the heath.   If you take a diversion to the heath edge you can find remains of the buildings and storage tank holders built by the army when Fleet Pond was a part of their training lands." },
 	{ "number" : "27", "latitude" : 51.28929855, "longitude" : -0.82152843, "image" : ["image-placeholder.png"], "thumbnail" : "image-placeholder.png.thumbnail", "routes" : ["brown"], "name" : "Lions view platform", "description" : "Taking the lower (Brown alternative Route) you reach Lions View platform: Walk up the ramp to the platform.  Good views from here of the eastern reedbeds, and out to the pond.  From here you can see the fallen trees on Cormorant Island where large numbers of Cormorants roost overnight in winter." }
   ]
-}
+};

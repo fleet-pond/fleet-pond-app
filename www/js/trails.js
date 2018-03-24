@@ -1,4 +1,4 @@
-{
+var trails = {
 	"pondTrails": [
 		{
 			"trail_colour" : "Red",
@@ -36,4 +36,4 @@
 			"description" : "This alternate route follows the lower path alongside the north east marsh, allowing you to reach the Lions View platform. From here you can get great views of the eastern readbeds, and out to the pond."
 		}
 	]
-}
+};

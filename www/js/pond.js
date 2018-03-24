@@ -1,4 +1,3 @@
-var poi;
 var showDelay = 180;
 var poiMarkers = [];
 var benchMarkers = [];
@@ -9,76 +8,39 @@ var initialCenter = {lat: 51.2860, lng: -0.823845};
 var initialZoom = 15;
 
 $(function() {
-    $.getJSON( "points-of-interest.json", {
-        format: "json"
-    }).done(function(json) {
-      poi = json;
-        for (var key in json) {
-            var getKey = json[key];
-            getKey.forEach(function(item) {
-                var routesHTML = getRoutesHTML(item);
-                $("#points-of-interest-info").before('<a data-toggle="tab" href="#selected-points-of-interest" onclick="selectedPoI(\'' +
-                    item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' + item.thumbnail +
-                    '"/></div>' +
-                    '<div class="cardText poiText"><b>' + item.name +
-                    '</b><p>' + item.description + '</p>' + routesHTML +
-                    '</div><div class="clear"></div></div></a>');
+    for (var key in poi) {
+        var getKey = poi[key];
+        getKey.forEach(function(item) {
+            var routesHTML = getRoutesHTML(item);
+            $("#points-of-interest-info").before('<a data-toggle="tab" href="#selected-points-of-interest" onclick="selectedPoI(\'' +
+                item.number + '\', \'#points-of-interest\');"><div class="pointOfInterest card"><div class="poiPic"><img src="images/' +
+                item.thumbnail + '"/></div>' +
+                '<div class="cardText poiText"><b>' + item.name +
+                '</b><p>' + item.description + '</p>' + routesHTML +
+                '</div><div class="clear"></div></div></a>');
+        });
+    }
 
-                var position = {lat: item.latitude, lng: item.longitude};
-                poiMarkers.push(new google.maps.Marker({
-                    position: position,
-		            label: item.number,
-                    map: map,
-                    animation: google.maps.Animation.DROP
-                }));
-                infoWindows.push(new google.maps.InfoWindow({
-                    content: '<a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(\'' + item.number + '\', \'#mapFrame\');">' + item.name + '</a>'
-                }));
-                var pointer = poiMarkers.length - 1;
-                poiMarkers[poiMarkers.length-1].addListener('click', function() {
-                    if (activeInfoWindow != null) {
-                        infoWindows[activeInfoWindow].close();
-                    }
-                    infoWindows[pointer].open(map, poiMarkers[pointer]);
-                    infoWindows[pointer].setMap(map);
-                    activeInfoWindow = pointer;
-                })
-            });
-        }
-    });
+    for (var key in trails) {
+        var getKey = trails[key];
+        getKey.forEach(function(item){
+            $("#trail-info").before('<div class="card"><div class="cardText">\
+                <div class="float half-width"><b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b>\
+                </div><div class="float half-width text-right"><a data-toggle="tab" href="#mapFrame" onclick="showRoute(\'' + item.trail_colour + '\');" aria-expanded="false">\
+                <i class="fas fa-map" style="color:' + item.color_hex + '"></i> View on map</a><br></div>' +
+                'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
+                <br><br><p>' + item.description + '</p></div></div>');
+        });
+    }
 
-    $.getJSON( "trails.json", {
-        format: "json"
-    }).done(function(json) {
-        for (var key in json){
-            var getKey = json[key];
-            getKey.forEach(function(item){
-                $("#trail-info").before('<div class="card"><div class="cardText">\
-                    <div class="float half-width"><b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b>\
-                    </div><div class="float half-width text-right"><a data-toggle="tab" href="#mapFrame" onclick="showRoute(\'' + item.trail_colour + '\');" aria-expanded="false">\
-                    <i class="fas fa-map" style="color:' + item.color_hex + '"></i> View on map</a><br></div>' +
-                    'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
-                    <br><br><p>' + item.description + '</p></div></div>');
-            });
-        }
-    });
-
-    benchCoordinates.forEach(function(element) {
-        var position = {lat: element.lat, lng: element.lng};
-        benchMarkers.push(new google.maps.Marker({
-            position: position,
-            icon: "http://maps.google.com/mapfiles/ms/icons/blue.png"
-        }));
-    });
-
-	$('#zoom-in').click(function () {
+    $('#zoom-in').click(function () {
         $('#pond-map').width($('#pond-map').width()*1.2)
         $('#pond-map').height($('#pond-map').height()*1.2)
-    })
+    });
     $('#zoom-out').click(function () {
         $('#pond-map').width($('#pond-map').width()/1.2)
         $('#pond-map').height($('#pond-map').height()/1.2)
-    })
+    });
 });
 
 function selectedPoI(number, link) {
@@ -153,21 +115,16 @@ function initMap() {
         west: -0.833800
     };
 
+    addMarkers();
+
     pondMap = new google.maps.GroundOverlay(
         'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
         imageBounds);
     pondMap.setOpacity(0.6);
 
-    $(function() {
-        $.getJSON( "points-of-interest.json", {
-            format: "json"
-        }).done(function(json) {
-          poi = json;
-
-        });
-    });
-
+    $("#checkBoxOverlay").click();
     $("#checkBoxInterests").click();
+    $("#checkBoxBenches").click();
     $("#checkBoxBlue").click();
     $("#checkBoxYellow").click();
     $("#checkBoxRed").click();
@@ -298,7 +255,8 @@ function toggleMarkers(markers, show) {
 }
 
 function clickMarker(marker) {
-    if (activeInfoWindow != undefined) {
+    $("#mapMenuItem").click();
+    if (marker != undefined) {
         google.maps.event.trigger(marker, 'click');
     }
 }
@@ -332,4 +290,41 @@ function updatePathWidths(strokeWeight) {
     redPath.setOptions({strokeWeight: strokeWeight});
     greenPath.setOptions({strokeWeight: strokeWeight});
     brownPath.setOptions({strokeWeight: strokeWeight});
+}
+
+function addMarkers() {
+    for (var key in poi) {
+        var getKey = poi[key];
+        getKey.forEach(function(item) {
+            var position = {lat: item.latitude, lng: item.longitude};
+            poiMarkers.push(new google.maps.Marker({
+                position: position,
+                label: item.number,
+                map: map,
+                animation: google.maps.Animation.DROP
+            }));
+            infoWindows.push(new google.maps.InfoWindow({
+                content: '<a data-toggle="tab" href=#selected-points-of-interest onclick="selectedPoI(\'' + item.number + '\', \'#mapFrame\');">' + item.name + '</a>'
+            }));
+            var pointer = poiMarkers.length - 1;
+            poiMarkers[pointer].addListener('click', function() {
+                console.log(activeInfoWindow);
+                if (activeInfoWindow != null) {
+                    infoWindows[activeInfoWindow].close();
+                }
+                infoWindows[pointer].open(map, poiMarkers[pointer]);
+                infoWindows[pointer].setMap(map);
+                activeInfoWindow = pointer;
+            })
+        });
+    }
+
+    benchCoordinates.forEach(function(element) {
+        var position = {lat: element.lat, lng: element.lng};
+        benchMarkers.push(new google.maps.Marker({
+            position: position,
+            icon: "images/bluePin.png",
+            map: map
+        }));
+    });
 }
