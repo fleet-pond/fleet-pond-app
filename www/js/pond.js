@@ -6,6 +6,7 @@ var infoWindows = [];
 var gpsLocation = null;
 var initialCenter = {lat: 51.2860, lng: -0.823845};
 var initialZoom = 15;
+var routePics = {};
 
 $(function() {
     for (var key in poi) {
@@ -18,18 +19,29 @@ $(function() {
                 '<div class="cardText poiText"><b>' + item.name +
                 '</b><p>' + item.description + '</p>' + routesHTML +
                 '</div><div class="clear"></div></div></a>');
+
+            item.routes.forEach(function(route) {
+                if (routePics[route] == undefined) {
+                    routePics[route] = [];
+                }
+                if (item.image[0] != "image-placeholder.png") {
+                    routePics[route].push(item.image[0])
+                }
+            })
         });
     }
 
     for (var key in trails) {
         var getKey = trails[key];
         getKey.forEach(function(item){
+            keyPics = shuffleArray(routePics[item.trail_colour.toLowerCase()])
             $("#trail-info").before('<div class="card"><div class="cardText">\
                 <div class="float half-width"><b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b>\
                 </div><div class="float half-width text-right"><a data-toggle="tab" href="#mapFrame" onclick="showRoute(\'' + item.trail_colour + '\');" aria-expanded="false">\
                 <i class="fas fa-map" style="color:' + item.color_hex + '"></i> View on map</a><br></div>' +
                 'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
-                <br><br><p>' + item.description + '</p></div></div>');
+                <br><br><p>' + item.description + '</p></div>\
+                <div id="poi-image-container"><img class="poi-image" src="images/' + keyPics[0] + '"></div></div>');
         });
     }
 
@@ -327,4 +339,22 @@ function addMarkers() {
             map: map
         }));
     });
+}
+
+function shuffleArray(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
 }
