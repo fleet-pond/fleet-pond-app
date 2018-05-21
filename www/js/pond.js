@@ -42,7 +42,7 @@ $(function() {
                 'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
                 <br><br><p>' + item.description + '</p></div>\
                 <div id="' + item.trail_colour + '-route-image-container">\
-                ' + generateSlideshowHTML(keyPics) + '</div></div>');
+                ' + generateSlideshowHTML(keyPics, item.trail_colour + '-image-slides') + '</div></div>');
         });
     }
 
@@ -56,18 +56,38 @@ $(function() {
     });
 });
 
-function generateSlideshowHTML(picsArray) {
-    console.log(picsArray)
-    console.log(picsArray.length)
+function generateSlideshowHTML(picsArray, id) {
+    var startHTML = '<div id="' + id + '" class="carousel slide" data-ride="carousel">';
+    var indicators = '<ol class="carousel-indicators">';
+    var wrappers = '<div class="carousel-inner">';
+    var controls = '';
+
+    for (var i = 0; i < picsArray.length; i++) {
+        var active = '';
+        if (i == 0) {
+            active = 'active';
+    }
+
+        indicators += '<li data-target="#' + id + '" data-slide-to="' + i + '" class="' + active + '"></li>';
+
+        wrappers += '<div class="item ' + active + '"><img src="images/' + picsArray[i] + '" alt="Picture ' + i + '" style="width:100%;"></div>';
+    }
+
+    indicators += '</ol>';
+    wrappers += '</div>';
+
     if (picsArray.length > 1) {
-        return '';
+        controls = '<a class="left carousel-control" href="#' + id + '" data-slide="prev">\
+            <span class="glyphicon glyphicon-chevron-left"></span>\
+            <span class="sr-only">Previous</span></a>\
+            <a class="right carousel-control" href="#' + id + '" data-slide="next">\
+            <span class="glyphicon glyphicon-chevron-right"></span>\
+            <span class="sr-only">Next</span></a>';
     }
-    else if (picsArray.length == 1) {
-        return '<img class="poi-image" src="images/' + picsArray[0] + '">';
-    }
-    else {
-        return '';
-    }
+
+    // startHTML + indicators + wrappers + controls + '</div>'
+    var sliderHTML = startHTML + wrappers + controls + '</div>'
+    return sliderHTML;
 }
 
 function selectedPoI(number, link) {
@@ -93,7 +113,7 @@ function selectedPoI(number, link) {
             $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showNavBar(true);"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
             $("#poi-back").attr("href", link);
             $("#poi-name").html("Point of interest " + number);
-            $("#poi-image-container").html(generateSlideshowHTML(element.image));
+            $("#poi-image-container").html(generateSlideshowHTML(element.image, 'poi-image-slides'));
             var viewOnMapHTML = '<a data-toggle="tab" href="#mapFrame" onclick="clickMarker(poiMarkers[' + index + ']);showNavBar(true);$(\'#mapMenuItem\')" ><i class="fas fa-map"></i> View on map</a><br>';
             $("#poi-description").html(viewOnMapHTML + "<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
             showNavBar(false);
