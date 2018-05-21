@@ -41,7 +41,8 @@ $(function() {
                 <i class="fas fa-map" style="color:' + item.color_hex + '"></i> View on map</a><br></div>' +
                 'Length ' + item.length_KM + 'km (' + item.length_miles +' miles)\
                 <br><br><p>' + item.description + '</p></div>\
-                <div id="poi-image-container"><img class="poi-image" src="images/' + keyPics[0] + '"></div></div>');
+                <div id="' + item.trail_colour + '-route-image-container">\
+                ' + generateSlideshowHTML(keyPics) + '</div></div>');
         });
     }
 
@@ -54,6 +55,20 @@ $(function() {
         $('#pond-map').height($('#pond-map').height()/1.2)
     });
 });
+
+function generateSlideshowHTML(picsArray) {
+    console.log(picsArray)
+    console.log(picsArray.length)
+    if (picsArray.length > 1) {
+        return '';
+    }
+    else if (picsArray.length == 1) {
+        return '<img class="poi-image" src="images/' + picsArray[0] + '">';
+    }
+    else {
+        return '';
+    }
+}
 
 function selectedPoI(number, link) {
     $(poi.points_of_interest).each(function(index, element) {
@@ -78,7 +93,7 @@ function selectedPoI(number, link) {
             $("#poi-heading").html('<a id="poi-back" data-toggle="tab" href="#points-of-interest" onclick="scrollToTop();showNavBar(true);"><i class="fas fa-angle-double-left"></i></a> ' + element.name);
             $("#poi-back").attr("href", link);
             $("#poi-name").html("Point of interest " + number);
-            $("#poi-image").attr("src", 'images/' + element.image[0]);
+            $("#poi-image-container").html(generateSlideshowHTML(element.image));
             var viewOnMapHTML = '<a data-toggle="tab" href="#mapFrame" onclick="clickMarker(poiMarkers[' + index + ']);showNavBar(true);$(\'#mapMenuItem\')" ><i class="fas fa-map"></i> View on map</a><br>';
             $("#poi-description").html(viewOnMapHTML + "<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
             showNavBar(false);
