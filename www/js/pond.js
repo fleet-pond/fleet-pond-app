@@ -25,7 +25,9 @@ $(function() {
                     routePics[route] = [];
                 }
                 if (item.image[0] != "image-placeholder.png") {
-                    routePics[route].push(item.image[0])
+                    for (var i = 0; i < item.image.length; i++) {
+                        routePics[route].push(item.image[i]);
+                    }
                 }
             })
         });
