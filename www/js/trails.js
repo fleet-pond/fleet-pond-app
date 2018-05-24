@@ -5,7 +5,7 @@ var trails = {
 			"color_hex" : "#F00",
 			"length_KM" : "1",
 			"length_miles" : "0.6",
-			"description" : "The Red Route will take you past The Dry Heath, one of the two open heathland areas, along wood-land paths. The Route visits Boathouse Corner with its fishing jetty designed for wheelchair use and the Picnic Site with a good view of the lake, the fringing reedbed and the open marsh. Please note that the section of path between Boathouse Corner and the Picnic Site is a woodland walk with many tree roots to trip the unwary."
+			"description" : "The Red Route will take you past the Dry Heath, one of the two open heathland areas, along wood-land paths. The Route visits Boathouse Corner with its fishing jetty designed for wheelchair use and the Picnic Site with a good view of the lake, the fringing reedbed and the open marsh. Please note that the section of path between Boathouse Corner and the Picnic Site is a woodland walk with many tree roots to trip the unwary."
 		},
 		{
 			"trail_colour" : "Yellow",
@@ -33,7 +33,7 @@ var trails = {
 			"color_hex" : "#841",
 			"length_KM" : "0.4",
 			"length_miles" : "0.25",
-			"description" : "This alternate route follows the lower path alongside the north east marsh, allowing you to reach the Lions View platform. From here you can get great views of the eastern readbeds, and out to the pond."
+			"description" : "This alternate route follows the lower path alongside the north east marsh, allowing you to reach the Lions View platform. From here you can get great views of the eastern reedbeds, and out to the pond."
 		}
 	]
 };
