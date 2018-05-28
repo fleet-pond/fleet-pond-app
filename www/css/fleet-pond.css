@@ -146,6 +146,10 @@ body {
     height: 95px;
 }
 
+.slider-control {
+    color: white;
+}
+
 .clear {
     clear: both;
 }
@@ -197,6 +201,7 @@ body {
     font-size: 12px;
     width: 110px;
 }
+
 .floating-panel span.title, #floating-panel1 span.title {
     font-family: 'Roboto','sans-serif';
     font-weight: bold;

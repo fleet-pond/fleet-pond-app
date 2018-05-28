@@ -69,7 +69,7 @@ function generateSlideshowHTML(picsArray, id) {
         var active = '';
         if (i == 0) {
             active = 'active';
-    }
+        }
 
         indicators += '<li data-target="#' + id + '" data-slide-to="' + i + '" class="' + active + '"></li>';
 
@@ -81,10 +81,10 @@ function generateSlideshowHTML(picsArray, id) {
 
     if (picsArray.length > 1) {
         controls = '<a class="left carousel-control" href="#' + id + '" data-slide="prev">\
-            <span class="glyphicon glyphicon-chevron-left"></span>\
+            <span class="glyphicon glyphicon-chevron-left slider-control"></span>\
             <span class="sr-only">Previous</span></a>\
             <a class="right carousel-control" href="#' + id + '" data-slide="next">\
-            <span class="glyphicon glyphicon-chevron-right"></span>\
+            <span class="glyphicon glyphicon-chevron-right slider-control"></span>\
             <span class="sr-only">Next</span></a>';
     }
 
@@ -181,7 +181,6 @@ function initMap() {
     $("#checkBoxGreen").click();
     $("#checkBoxBrown").click();
 
-    //HERE
     if ("geolocation" in navigator) {
         var color = '#3498DB';
         var color2 = '#FFF';
