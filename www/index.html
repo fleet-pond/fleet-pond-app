@@ -70,7 +70,8 @@
                 </div>
             </div>
             <div id="moveMap" class="floating-panel">
-                <button id="goToGPS" onclick="goToGPS();"><i class="fas fa-location-arrow"></i></button><br>
+                <button id="lockGPS" class="gps-buttons" onclick="toggleLockGPS();"><i id="lockGPSIcon" class="fas fa-lock-open"></i></button><br>
+                <button id="goToGPS" class="gps-buttons" onclick="goToGPS();"><i class="fas fa-location-arrow"></i></button><br>
                 <button id="goToPond" onclick="resetMap();"><i class="fas fa-map"></i></button>
             </div>
             <div id="map"></div>

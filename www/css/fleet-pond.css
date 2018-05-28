@@ -286,6 +286,6 @@ a {
     height: 30px;
 }
 
-#goToGPS {
+.gps-buttons {
     display: none;
 }

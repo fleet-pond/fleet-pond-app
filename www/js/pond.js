@@ -8,6 +8,7 @@ var initialCenter = {lat: 51.2860, lng: -0.823845};
 var initialZoom = 15;
 var routePics = {};
 var watchLocation;
+var trackLocation = false;
 
 $(function() {
     for (var key in poi) {
@@ -212,27 +213,26 @@ function initMap() {
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
-        console.log(zoom);
         if (zoom <= 12) {
-            updatePathWidths(1);
+            updatePathWidths({strokeWeight: 1});
         }
         else if (zoom <= 14) {
-            updatePathWidths(2);
+            updatePathWidths({strokeWeight: 2});
         }
         else if (zoom <= 15) {
-            updatePathWidths(3);
+            updatePathWidths({strokeWeight: 3});
         }
         else if (zoom <= 16) {
-            updatePathWidths(4);
+            updatePathWidths({strokeWeight: 4});
         }
         else if (zoom <= 18) {
-            updatePathWidths(6);
+            updatePathWidths({strokeWeight: 6});
         }
         else if (zoom <= 19) {
-            updatePathWidths(8);
+            updatePathWidths({strokeWeight: 8});
         }
         else {
-            updatePathWidths(10);
+            updatePathWidths({strokeWeight: 10});
         }
     });
 }
@@ -260,13 +260,19 @@ function toggleSelector() {
 
 function onGPSSuccess(gpsAccuracy, gpsCenter) {
     return function(pos) {
-        console.log("lat: " + pos.coords.latitude + ", lng: " + pos.coords.longitude + ", acc: " + pos.coords.accuracy);
-        gpsAccuracy.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        gpsAccuracy.setRadius(parseInt(pos.coords.accuracy));
-        gpsCenter.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        $("#goToGPS").css('display', 'inline-block');
-        gpsLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+        acc = parseInt(pos.coords.accuracy);
+        lat = parseFloat(pos.coords.latitude);
+        lng = parseFloat(pos.coords.longitude);
+        console.log("lat: " + lat + ", lng: " + lng + ", acc: " + acc);
+        gpsAccuracy.setCenter(new google.maps.LatLng(lat, lng));
+        gpsAccuracy.setRadius(acc);
+        gpsCenter.setPosition(new google.maps.LatLng(lat, lng));
+        $(".gps-buttons").css('display', 'inline-block');
+        gpsLocation = {lat: lat, lng: lng};
         consecutiveLocationFails = 0;
+        if (trackLocation && (acc < 150)) {
+            goToGPS();
+        }
     }
 }
 
@@ -335,6 +341,13 @@ function resetMap() {
     map.setZoom(initialZoom);
 }
 
+function toggleLockGPS() {
+    console.log("toggleLockGPS");
+    $('#lockGPSIcon').toggleClass('fa-lock-open');
+    $('#lockGPSIcon').toggleClass('fa-lock');
+    trackLocation = !trackLocation;
+}
+
 function goToGPS() {
     console.log(gpsLocation);
     if (gpsLocation != null) {
@@ -353,12 +366,12 @@ function createPath(pathCoordinates, color) {
     return newPath;
 }
 
-function updatePathWidths(strokeWeight) {
-    bluePath.setOptions({strokeWeight: strokeWeight});
-    yellowPath.setOptions({strokeWeight: strokeWeight});
-    redPath.setOptions({strokeWeight: strokeWeight});
-    greenPath.setOptions({strokeWeight: strokeWeight});
-    brownPath.setOptions({strokeWeight: strokeWeight});
+function updatePathWidths(strokeOptions) {
+    bluePath.setOptions(strokeOptions);
+    yellowPath.setOptions(strokeOptions);
+    redPath.setOptions(strokeOptions);
+    greenPath.setOptions(strokeOptions);
+    brownPath.setOptions(strokeOptions);
 }
 
 function addMarkers() {
