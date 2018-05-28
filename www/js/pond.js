@@ -180,18 +180,32 @@ function initMap() {
     $("#checkBoxGreen").click();
     $("#checkBoxBrown").click();
 
-    var userPositionGIF = new google.maps.Marker({
+    var color = '#3498DB';
+    var color2 = '#FFF';
+    var gpsAccuracy = new google.maps.Circle({
         map: map,
-        icon: {
-            url: 'images/location_pulse_50.gif',
-            size: new google.maps.Size(50, 50),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(25, 25)
-        }
+        fillColor: color,
+        fillOpacity: 0.2,
+        strokeColor: color,
+        strokeOpacity: 1.0
     });
 
-    userPositionGIF.setMap(map);
-    updateGPSLocation(userPositionGIF);
+    var gpsCenter = new google.maps.Marker({
+        map: map,
+        title: "userLocation",
+        icon: {
+          strokeColor: color2,
+          strokeOpacity: 1.0,
+          strokeWeight: 3,
+          fillColor: color,
+          fillOpacity: 1.0,
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          anchor: new google.maps.Point(0, 0)
+        }
+      });
+
+    updateGPSLocation(gpsAccuracy, gpsCenter);
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
@@ -241,20 +255,22 @@ function toggleSelector() {
     $("#iconShowHide").toggleClass("fa-angle-up");
 }
 
-function updateGPSLocation(userPosition) {
+function updateGPSLocation(gpsAccuracy, userPosition) {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(pos) {
-            console.log(pos.coords.latitude + "\n" + pos.coords.longitude);
-            userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude))
+            console.log(pos.coords.latitude + "\n" + pos.coords.longitude + "\n" + pos.accuracy);
+            gpsAccuracy.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            gpsAccuracy.setRadius(pos.coords.accuracy);
+            userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
             $("#goToGPS").css('display', 'inline-block');
             gpsLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
-            setTimeout(function() { updateGPSLocation(userPosition); }, 3000);
+            setTimeout(function() { updateGPSLocation(gpsAccuracy, userPosition); }, 3000);
         },
         function() {
-            console.log("NOPE - timeout")
+            console.log("GPS timeout")
             consecutiveLocationFails += 1;
             if (consecutiveLocationFails < 100) {
-                setTimeout(function() { updateGPSLocation(userPosition); }, 5000);
+                setTimeout(function() { updateGPSLocation(gpsAccuracy, userPosition); }, 5000);
             }
             else {
                 userPosition.setMap(null);
@@ -262,7 +278,7 @@ function updateGPSLocation(userPosition) {
         }, gpsOptions);
     }
     else {
-        console.log("NOPE - unavailable");
+        console.log("GPS unavailable");
         userPosition.setMap(null);
     }
 }
