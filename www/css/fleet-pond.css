@@ -117,8 +117,6 @@ body {
     color: #373737;
 }
 
-
-
 /* POI CSS */
 .pointOfInterest{
     max-width: 100%;
@@ -288,4 +286,63 @@ a {
 
 .gps-buttons {
     display: none;
+}
+
+/* GPS pulse ring */
+@-moz-keyframes pulsate {
+    from {
+        -moz-transform: scale(0.35);
+        opacity: 1.0;
+    }
+    95% {
+        -moz-transform: scale(1.5);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: scale(0.4);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes pulsate {
+    from {
+        -webkit-transform: scale(0.35);
+        opacity: 1.0;
+    }
+    95% {
+        -webkit-transform: scale(1.5);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(0.4);
+        opacity: 0;
+    }
+}
+
+#mapFrame div .gmnoprint[title="userLocation"] {
+    -moz-animation: pulsate 1.5s ease-in-out infinite;
+    -webkit-animation: pulsate 1.5s ease-in-out infinite;
+    border:1pt solid #fff;
+
+    -moz-border-radius:51px;
+    -webkit-border-radius:51px;
+    border-radius:51px;
+
+    -moz-box-shadow:inset 0 0 5px #09f, inset 0 0 5px #09f, inset 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f;
+    -webkit-box-shadow:inset 0 0 5px #09f, inset 0 0 5px #09f, inset 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f;
+    box-shadow:inset 0 0 5px #09f, inset 0 0 5px #09f, inset 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f, 0 0 5px #09f;
+
+    height:62px!important;
+    margin:-19px 0 0 -19px;
+    width:62px!important;
+}
+
+#mapFrame div.gmnoprint[title="userLocation"] img {
+    display:none;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (device-width: 768px) {
+    #mapFrame div.gmnoprint[title="userLocation"] {
+        margin: -11px 0 0 -11px;
+    }
 }
