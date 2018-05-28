@@ -7,6 +7,7 @@ var gpsLocation = null;
 var initialCenter = {lat: 51.2860, lng: -0.823845};
 var initialZoom = 15;
 var routePics = {};
+var watchLocation;
 
 $(function() {
     for (var key in poi) {
@@ -180,32 +181,35 @@ function initMap() {
     $("#checkBoxGreen").click();
     $("#checkBoxBrown").click();
 
-    var color = '#3498DB';
-    var color2 = '#FFF';
-    var gpsAccuracy = new google.maps.Circle({
-        map: map,
-        fillColor: color,
-        fillOpacity: 0.2,
-        strokeColor: color,
-        strokeOpacity: 1.0
-    });
+    //HERE
+    if ("geolocation" in navigator) {
+        var color = '#3498DB';
+        var color2 = '#FFF';
+        var gpsAccuracy = new google.maps.Circle({
+            map: map,
+            fillColor: color,
+            fillOpacity: 0.2,
+            strokeColor: color,
+            strokeOpacity: 1.0
+        });
 
-    var gpsCenter = new google.maps.Marker({
-        map: map,
-        title: "userLocation",
-        icon: {
-          strokeColor: color2,
-          strokeOpacity: 1.0,
-          strokeWeight: 3,
-          fillColor: color,
-          fillOpacity: 1.0,
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 10,
-          anchor: new google.maps.Point(0, 0)
-        }
-      });
+        var gpsCenter = new google.maps.Marker({
+            map: map,
+            title: "userLocation",
+            icon: {
+              strokeColor: color2,
+              strokeOpacity: 1.0,
+              strokeWeight: 3,
+              fillColor: color,
+              fillOpacity: 1.0,
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              anchor: new google.maps.Point(0, 0)
+            }
+          });
 
-    updateGPSLocation(gpsAccuracy, gpsCenter);
+        watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
+    }
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
@@ -255,31 +259,32 @@ function toggleSelector() {
     $("#iconShowHide").toggleClass("fa-angle-up");
 }
 
-function updateGPSLocation(gpsAccuracy, userPosition) {
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            console.log(pos.coords.latitude + "\n" + pos.coords.longitude + "\n" + pos.accuracy);
-            gpsAccuracy.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            gpsAccuracy.setRadius(pos.coords.accuracy);
-            userPosition.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            $("#goToGPS").css('display', 'inline-block');
-            gpsLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
-            setTimeout(function() { updateGPSLocation(gpsAccuracy, userPosition); }, 3000);
-        },
-        function() {
-            console.log("GPS timeout")
-            consecutiveLocationFails += 1;
-            if (consecutiveLocationFails < 100) {
-                setTimeout(function() { updateGPSLocation(gpsAccuracy, userPosition); }, 5000);
-            }
-            else {
-                userPosition.setMap(null);
-            }
-        }, gpsOptions);
+function onGPSSuccess(gpsAccuracy, gpsCenter) {
+    return function(pos) {
+        console.log("lat: " + pos.coords.latitude + ", lng: " + pos.coords.longitude + ", acc: " + pos.coords.accuracy);
+        gpsAccuracy.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        gpsAccuracy.setRadius(parseInt(pos.coords.accuracy));
+        gpsCenter.setPosition(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        $("#goToGPS").css('display', 'inline-block');
+        gpsLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+        consecutiveLocationFails = 0;
     }
-    else {
-        console.log("GPS unavailable");
-        userPosition.setMap(null);
+}
+
+function onGPSError(gpsAccuracy, gpsCenter) {
+    return function(error) {
+        console.log("Get location error:");
+        console.log(error);
+        if ((consecutiveLocationFails > 9) || (error.code == 1)) {
+            console.log("Disabling gps tracking.")
+            navigator.geolocation.clearWatch(watchLocation);
+            gpsAccuracy.setMap(null);
+            gpsCenter.setMap(null);
+            $("#goToGPS").css('display', 'none');
+        }
+        else {
+            consecutiveLocationFails += 1;
+        }
     }
 }
 
