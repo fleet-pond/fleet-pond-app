@@ -9,6 +9,7 @@ var initialZoom = 15;
 var routePics = {};
 var watchLocation;
 var trackLocation = false;
+var online = true;
 
 $(function() {
     for (var key in poi) {
@@ -38,7 +39,7 @@ $(function() {
     for (var key in trails) {
         var getKey = trails[key];
         getKey.forEach(function(item){
-            keyPics = shuffleArray(routePics[item.trail_colour.toLowerCase()])
+            keyPics = shuffleArray(routePics[item.trail_colour.toLowerCase()]);
             $("#trail-info").before('<div class="card"><div class="cardText">\
                 <div class="float half-width"><b><i class="fas fa-map-signs" style="color:' + item.color_hex + '"></i> ' + item.trail_colour + ' Route</b>\
                 </div><div class="float half-width text-right"><a data-toggle="tab" href="#mapFrame" onclick="showRoute(\'' + item.trail_colour + '\');" aria-expanded="false">\
@@ -118,7 +119,10 @@ function selectedPoI(number, link) {
             $("#poi-back").attr("href", link);
             $("#poi-name").html("Point of interest " + number);
             $("#poi-image-container").html(generateSlideshowHTML(element.image, 'poi-image-slides'));
-            var viewOnMapHTML = '<a data-toggle="tab" href="#mapFrame" onclick="clickMarker(poiMarkers[' + index + ']);showNavBar(true);$(\'#mapMenuItem\')" ><i class="fas fa-map"></i> View on map</a><br>';
+            var viewOnMapHTML = "";
+            if (online) {
+                viewOnMapHTML = '<a data-toggle="tab" href="#mapFrame" onclick="clickMarker(poiMarkers[' + index + ']);showNavBar(true);$(\'#mapMenuItem\')" ><i class="fas fa-map"></i> View on map</a><br>';
+            }
             $("#poi-description").html(viewOnMapHTML + "<b>Route access: </b>" + getRoutesHTML(element) + "<br>" + element.description);
             showNavBar(false);
         }
@@ -148,94 +152,94 @@ var gpsOptions = { timeout: 20000 };
 var consecutiveLocationFails = 0;
 
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: initialCenter,
-        zoom: initialZoom
-    });
-
-    bluePath = createPath(bluePathCoordinates, '#0000FF');
-    yellowPath = createPath(yellowPathCoordinates, '#EEEE44');
-    redPath = createPath(redPathCoordinates, '#FF0000');
-    greenPath = createPath(greenPathCoordinates, '#008000');
-    brownPath = createPath(brownPathCoordinates, '#8B4513');
-
-    var imageBounds = {
-        north: 51.292000,
-        south: 51.2820,
-        east: -0.815100,
-        west: -0.833800
-    };
-
-    addMarkers();
-
-    pondMap = new google.maps.GroundOverlay(
-        'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
-        imageBounds);
-    pondMap.setOpacity(0.6);
-
-    $("#checkBoxOverlay").click();
-    $("#checkBoxInterests").click();
-    $("#checkBoxBenches").click();
-    $("#checkBoxBlue").click();
-    $("#checkBoxYellow").click();
-    $("#checkBoxRed").click();
-    $("#checkBoxGreen").click();
-    $("#checkBoxBrown").click();
-
-    if ("geolocation" in navigator) {
-        var color = '#3498DB';
-        var color2 = '#FFF';
-        var gpsAccuracy = new google.maps.Circle({
-            map: map,
-            fillColor: color,
-            fillOpacity: 0.2,
-            strokeColor: color,
-            strokeOpacity: 1.0
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: initialCenter,
+            zoom: initialZoom
         });
 
-        var gpsCenter = new google.maps.Marker({
-            map: map,
-            title: "userLocation",
-            icon: {
-              strokeColor: color2,
-              strokeOpacity: 1.0,
-              strokeWeight: 3,
-              fillColor: color,
-              fillOpacity: 1.0,
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 10,
-              anchor: new google.maps.Point(0, 0)
+        bluePath = createPath(bluePathCoordinates, '#0000FF');
+        yellowPath = createPath(yellowPathCoordinates, '#EEEE44');
+        redPath = createPath(redPathCoordinates, '#FF0000');
+        greenPath = createPath(greenPathCoordinates, '#008000');
+        brownPath = createPath(brownPathCoordinates, '#8B4513');
+
+        var imageBounds = {
+            north: 51.292000,
+            south: 51.2820,
+            east: -0.815100,
+            west: -0.833800
+        };
+
+        addMarkers();
+
+        pondMap = new google.maps.GroundOverlay(
+            'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
+            imageBounds);
+        pondMap.setOpacity(0.6);
+
+        $("#checkBoxOverlay").click();
+        $("#checkBoxInterests").click();
+        $("#checkBoxBenches").click();
+        $("#checkBoxBlue").click();
+        $("#checkBoxYellow").click();
+        $("#checkBoxRed").click();
+        $("#checkBoxGreen").click();
+        $("#checkBoxBrown").click();
+
+        if ("geolocation" in navigator) {
+            var color = '#3498DB';
+            var color2 = '#FFF';
+            var gpsAccuracy = new google.maps.Circle({
+                map: map,
+                fillColor: color,
+                fillOpacity: 0.2,
+                strokeColor: color,
+                strokeOpacity: 1.0
+            });
+
+            var gpsCenter = new google.maps.Marker({
+                map: map,
+                title: "userLocation",
+                icon: {
+                  strokeColor: color2,
+                  strokeOpacity: 1.0,
+                  strokeWeight: 3,
+                  fillColor: color,
+                  fillOpacity: 1.0,
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: 10,
+                  anchor: new google.maps.Point(0, 0)
+                }
+              });
+
+            watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
+        }
+
+        google.maps.event.addListener(map, 'zoom_changed', function() {
+            var zoom = map.getZoom();
+            if (zoom <= 12) {
+                updatePathWidths({strokeWeight: 1});
             }
-          });
-
-        watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
+            else if (zoom <= 14) {
+                updatePathWidths({strokeWeight: 2});
+            }
+            else if (zoom <= 15) {
+                updatePathWidths({strokeWeight: 3});
+            }
+            else if (zoom <= 16) {
+                updatePathWidths({strokeWeight: 4});
+            }
+            else if (zoom <= 18) {
+                updatePathWidths({strokeWeight: 6});
+            }
+            else if (zoom <= 19) {
+                updatePathWidths({strokeWeight: 8});
+            }
+            else {
+                updatePathWidths({strokeWeight: 10});
+            }
+        });
     }
-
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-        var zoom = map.getZoom();
-        if (zoom <= 12) {
-            updatePathWidths({strokeWeight: 1});
-        }
-        else if (zoom <= 14) {
-            updatePathWidths({strokeWeight: 2});
-        }
-        else if (zoom <= 15) {
-            updatePathWidths({strokeWeight: 3});
-        }
-        else if (zoom <= 16) {
-            updatePathWidths({strokeWeight: 4});
-        }
-        else if (zoom <= 18) {
-            updatePathWidths({strokeWeight: 6});
-        }
-        else if (zoom <= 19) {
-            updatePathWidths({strokeWeight: 8});
-        }
-        else {
-            updatePathWidths({strokeWeight: 10});
-        }
-    });
-}
 
 function toggleMapItem(item, show) {
     if (show) {
@@ -310,11 +314,13 @@ function getRoutesHTML(item) {
 function showRoute(route) {
     $("#mapMenuItem").click();
 
-    checkShowRoute("Blue", route);
-    checkShowRoute("Yellow", route);
-    checkShowRoute("Red", route);
-    checkShowRoute("Green", route);
-    checkShowRoute("Brown", route);
+    if (online) {
+        checkShowRoute("Blue", route);
+        checkShowRoute("Yellow", route);
+        checkShowRoute("Red", route);
+        checkShowRoute("Green", route);
+        checkShowRoute("Brown", route);
+    }
 }
 
 function checkShowRoute(route, shownRoute) {
@@ -427,4 +433,76 @@ function shuffleArray(array) {
   }
 
   return array;
+}
+
+function offlineMode() {
+    online = false;
+    console.log("Offline mode activated.");
+
+    $('#panelShowHide').css('display', 'none');
+
+    var offlineButtonHTML = '<button id="offlineZoomIn" onclick="offlineMapZoomChange(3/2);"><i class="fas fa-plus"></i></button><br>\
+                <button id="offlineZoomOut" onclick="offlineMapZoomChange(2/3);"><i class="fas fa-minus"></i></button>';
+
+    $('#moveMap').css('bottom', "84px");
+    $('#moveMap').html(offlineButtonHTML);
+
+    // add map to map page
+    $('#map').toggleClass('offline-map');
+    $('#map').html('<img id="map-image" src="images/fleet-pond-map-with-brown_green_routes.jpg" />');
+
+    $("#map-image").on('load', function() { setMapImageHeight(500); });
+}
+
+function offlineMapZoomChange(zoomChange) {
+    setMapImageHeight(parseInt($('#map-image').css('height')) * zoomChange);
+}
+
+function setMapImageHeight(newHeight) {
+    // get current x and y scroll center
+    var xCenter = 0.5;
+    var yCenter = 0.5;
+
+    var initScrollX = $('#map').scrollLeft();
+    var initImageX = $('#map-image').width();
+    var initContainerX = $('#map').width();
+
+    var initScrollY = $('#map').scrollTop();
+    var initImageY = $('#map-image').height();
+    var initContainerY = $('#map').height();
+
+    if (initImageX > initContainerX) {
+        xCenter = (initScrollX + (initContainerX / 2)) / initImageX;
+    }
+
+    if (initImageY > initContainerY) {
+        yCenter = (initScrollY + (initContainerY / 2)) / initImageY;
+    }
+
+    $('#map-image').css('height', newHeight+"px");
+
+    // set new x and y scroll center
+    var postImageX = $('#map-image').width();
+    var postContainerX = $('#map').width();
+
+    var postImageY = $('#map-image').height();
+    var postContainerY = $('#map').height();
+
+    var newScrollX = (xCenter * postImageX) - (postContainerX / 2);
+    var newScrollY = (yCenter * postImageY) - (postContainerY / 2);
+
+    $('#map').scrollLeft(newScrollX);
+    $('#map').scrollTop(newScrollY);
+
+    centerMapImagePadding();
+}
+
+function centerMapImagePadding() {
+    imageHeight = $('#map-image').height();
+    divHeight = $('#map').height();
+    var newMarginTop = '0';
+    if (imageHeight < divHeight) {
+        newMarginTop = ((divHeight-imageHeight)/2) + 'px';
+    }
+    $('#map-image').css('margin-top', newMarginTop);
 }
