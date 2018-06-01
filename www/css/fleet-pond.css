@@ -301,6 +301,16 @@ a {
     height: 1px;
 }
 
+.one-line {
+    white-space: pre;
+}
+
+.carousel-caption {
+    bottom: 0;
+    padding-bottom: 0;
+    text-shadow: 2px 0px #000, 1px 1px #000, 0px 2px #000, -1px 1px #000, -2px 0px #000, -1px -1px #000, 0px -2px #000, 1px -1px #000;
+}
+
 /* GPS pulse ring */
 @-moz-keyframes pulsate {
     from {

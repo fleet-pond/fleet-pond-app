@@ -10,6 +10,11 @@ var routePics = {};
 var watchLocation;
 var trackLocation = false;
 var online = true;
+var gallerySlideshow = true;
+var cardStart = '<div class="card"><div class="cardText">';
+var cardEnd = '</div></div>';
+var gallerySliderHTML = '';
+var galleryListHTML = '';
 
 $(function() {
     for (var key in poi) {
@@ -50,6 +55,28 @@ $(function() {
                 ' + generateSlideshowHTML(keyPics, item.trail_colour + '-image-slides') + '</div></div>');
         });
     }
+    gallery = shuffleArray(gallery.gallery);
+    gallery.forEach(function(picture) {
+        console.log(picture);
+        galleryListHTML += '<div class="card"><img style="max-width:100%;" src="images/' + picture.src + '"/>';
+        var pictureText = "";
+        if ('name' in picture) {
+            pictureText += '<b>Taken by:</b> ' + picture.name
+        }
+        if ('title' in picture) {
+            pictureText += '<br/><b>Title:</b> ' + picture.title
+        }
+        if ('description' in picture) {
+            pictureText += '<br/><b>Description:</b> ' + picture.description
+        }
+
+        if (pictureText != "") {
+            pictureText = '<div class="cardText">' + pictureText + '</div>';
+    }
+        galleryListHTML += pictureText + '</div>';
+    });
+    gallerySliderHTML = "<div class='card'>" + generateSlideshowHTML(gallery, "gallerySlider") + "</div>";
+    updateGalleryContent();
 
     $('#zoom-in').click(function () {
         $('#pond-map').width($('#pond-map').width()*1.2)
@@ -60,6 +87,26 @@ $(function() {
         $('#pond-map').height($('#pond-map').height()/1.2)
     });
 });
+
+function updateGalleryContent() {
+    var slideshowSelector = '<br/><br/><div class="text-center"><button type="button" class="btn btn-success" id="galleryButton" onclick="toggleGallery()">View images as list</button></div>';
+    var galleryDiv = '<div id="galleryPictures">' + gallerySliderHTML + '</div>'
+    var galleryContent = '<h1>Gallery</h1>' + cardStart + galleryCurrentText + cardEnd +
+    cardStart + galleryNextText + slideshowSelector + cardEnd + galleryDiv;
+    $('#gallery').html(galleryContent);
+}
+
+function toggleGallery() {
+    gallerySlideshow = !gallerySlideshow;
+    if (gallerySlideshow) {
+        $('#galleryButton').text("View images as list");
+        $('#galleryPictures').html(gallerySliderHTML);
+    }
+    else {
+        $('#galleryButton').text("View images as slideshow");
+        $('#galleryPictures').html(galleryListHTML);
+    }
+}
 
 function generateSlideshowHTML(picsArray, id) {
     var startHTML = '<div id="' + id + '" class="carousel slide" data-ride="carousel">';
@@ -75,7 +122,20 @@ function generateSlideshowHTML(picsArray, id) {
 
         indicators += '<li data-target="#' + id + '" data-slide-to="' + i + '" class="' + active + '"></li>';
 
-        wrappers += '<div class="item ' + active + '"><img src="images/' + picsArray[i] + '" alt="Picture ' + i + '" style="width:100%;"></div>';
+        var picSrc = picsArray[i];
+        var picDescription = "";
+        if (typeof picsArray[i] != "string") {
+            picDescription = "Photo by "
+            picSrc = picsArray[i].src;
+            if ('title' in picsArray[i]) {
+                picDescription = "'" + picsArray[i].title + "' by ";
+            }
+            picDescription += picsArray[i].name;
+        if (picDescription != "Photo by ") {
+            picDescription = '<div class="carousel-caption d-none d-md-block"><h4>' + picDescription + '</h4></div>';
+        }
+        }
+        wrappers += '<div class="item ' + active + '"><img src="images/' + picSrc + '" alt="Picture ' + i + '" style="width:100%;">' + picDescription + '</div>';
     }
 
     indicators += '</ol>';
