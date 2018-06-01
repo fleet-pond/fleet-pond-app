@@ -57,7 +57,7 @@ $(function() {
     }
     gallery = shuffleArray(gallery.gallery);
     gallery.forEach(function(picture) {
-        galleryListHTML += '<div class="card"><img style="max-width:100%;" src="images/' + picture.src + '"/>';
+        galleryListHTML += '<div class="card"><img style="max-width:100%;width:100%;" src="images/' + picture.src + '"/>';
         var pictureText = "";
         if ('name' in picture) {
             pictureText += '<b>Taken by:</b> ' + picture.name
@@ -134,7 +134,7 @@ function generateSlideshowHTML(picsArray, id) {
             picDescription = '<div class="carousel-caption d-none d-md-block"><h4>' + picDescription + '</h4></div>';
         }
         }
-        wrappers += '<div class="item ' + active + '"><img src="images/' + picSrc + '" alt="Picture ' + i + '" style="width:100%;">' + picDescription + '</div>';
+        wrappers += '<div class="item ' + active + '"><img src="images/' + picSrc + '" alt="Picture ' + i + '" style="max-width:100%;width:100%;">' + picDescription + '</div>';
     }
 
     indicators += '</ol>';
