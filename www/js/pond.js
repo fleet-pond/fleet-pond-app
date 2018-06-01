@@ -57,7 +57,6 @@ $(function() {
     }
     gallery = shuffleArray(gallery.gallery);
     gallery.forEach(function(picture) {
-        console.log(picture);
         galleryListHTML += '<div class="card"><img style="max-width:100%;" src="images/' + picture.src + '"/>';
         var pictureText = "";
         if ('name' in picture) {
@@ -408,7 +407,6 @@ function resetMap() {
 }
 
 function toggleLockGPS() {
-    console.log("toggleLockGPS");
     $('#lockGPSIcon').toggleClass('fa-lock-open');
     $('#lockGPSIcon').toggleClass('fa-lock');
     trackLocation = !trackLocation;
@@ -456,7 +454,6 @@ function addMarkers() {
             }));
             var pointer = poiMarkers.length - 1;
             poiMarkers[pointer].addListener('click', function() {
-                console.log(activeInfoWindow);
                 if (activeInfoWindow != null) {
                     infoWindows[activeInfoWindow].close();
                 }
