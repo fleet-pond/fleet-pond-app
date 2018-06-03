@@ -15,6 +15,8 @@ var cardStart = '<div class="card"><div class="cardText">';
 var cardEnd = '</div></div>';
 var gallerySliderHTML = '';
 var galleryListHTML = '';
+var gpsAccuracy;
+var gpsSuccess;
 
 $(function() {
     for (var key in poi) {
@@ -211,94 +213,110 @@ var gpsOptions = { timeout: 20000 };
 var consecutiveLocationFails = 0;
 
 function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: initialCenter,
-            zoom: initialZoom
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: initialCenter,
+        zoom: initialZoom
+    });
+
+    bluePath = createPath(bluePathCoordinates, '#0000FF');
+    yellowPath = createPath(yellowPathCoordinates, '#EEEE44');
+    redPath = createPath(redPathCoordinates, '#FF0000');
+    greenPath = createPath(greenPathCoordinates, '#008000');
+    brownPath = createPath(brownPathCoordinates, '#8B4513');
+
+    var imageBounds = {
+        north: 51.292000,
+        south: 51.2820,
+        east: -0.815100,
+        west: -0.833800
+    };
+
+    addMarkers();
+
+    pondMap = new google.maps.GroundOverlay(
+        'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
+        imageBounds);
+    pondMap.setOpacity(0.6);
+
+    $("#checkBoxOverlay").click();
+    $("#checkBoxInterests").click();
+    $("#checkBoxBenches").click();
+    $("#checkBoxBlue").click();
+    $("#checkBoxYellow").click();
+    $("#checkBoxRed").click();
+    $("#checkBoxGreen").click();
+    $("#checkBoxBrown").click();
+
+    if ("geolocation" in navigator) {
+        var color = '#3498DB';
+        var color2 = '#FFF';
+        gpsAccuracy = new google.maps.Circle({
+            map: map,
+            fillColor: color,
+            fillOpacity: 0.2,
+            strokeColor: color,
+            strokeOpacity: 1.0
         });
 
-        bluePath = createPath(bluePathCoordinates, '#0000FF');
-        yellowPath = createPath(yellowPathCoordinates, '#EEEE44');
-        redPath = createPath(redPathCoordinates, '#FF0000');
-        greenPath = createPath(greenPathCoordinates, '#008000');
-        brownPath = createPath(brownPathCoordinates, '#8B4513');
-
-        var imageBounds = {
-            north: 51.292000,
-            south: 51.2820,
-            east: -0.815100,
-            west: -0.833800
-        };
-
-        addMarkers();
-
-        pondMap = new google.maps.GroundOverlay(
-            'http://www.fleetpond.fccs.org.uk/fpmap14.jpg',
-            imageBounds);
-        pondMap.setOpacity(0.6);
-
-        $("#checkBoxOverlay").click();
-        $("#checkBoxInterests").click();
-        $("#checkBoxBenches").click();
-        $("#checkBoxBlue").click();
-        $("#checkBoxYellow").click();
-        $("#checkBoxRed").click();
-        $("#checkBoxGreen").click();
-        $("#checkBoxBrown").click();
-
-        if ("geolocation" in navigator) {
-            var color = '#3498DB';
-            var color2 = '#FFF';
-            var gpsAccuracy = new google.maps.Circle({
-                map: map,
+        gpsCenter = new google.maps.Marker({
+            map: map,
+            title: "userLocation",
+            icon: {
+                strokeColor: color2,
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
                 fillColor: color,
-                fillOpacity: 0.2,
-                strokeColor: color,
-                strokeOpacity: 1.0
-            });
-
-            var gpsCenter = new google.maps.Marker({
-                map: map,
-                title: "userLocation",
-                icon: {
-                  strokeColor: color2,
-                  strokeOpacity: 1.0,
-                  strokeWeight: 3,
-                  fillColor: color,
-                  fillOpacity: 1.0,
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: 10,
-                  anchor: new google.maps.Point(0, 0)
-                }
-              });
-
-            watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
-        }
-
-        google.maps.event.addListener(map, 'zoom_changed', function() {
-            var zoom = map.getZoom();
-            if (zoom <= 12) {
-                updatePathWidths({strokeWeight: 1});
-            }
-            else if (zoom <= 14) {
-                updatePathWidths({strokeWeight: 2});
-            }
-            else if (zoom <= 15) {
-                updatePathWidths({strokeWeight: 3});
-            }
-            else if (zoom <= 16) {
-                updatePathWidths({strokeWeight: 4});
-            }
-            else if (zoom <= 18) {
-                updatePathWidths({strokeWeight: 6});
-            }
-            else if (zoom <= 19) {
-                updatePathWidths({strokeWeight: 8});
-            }
-            else {
-                updatePathWidths({strokeWeight: 10});
+                fillOpacity: 1.0,
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                anchor: new google.maps.Point(0, 0)
             }
         });
+
+        getInitialGPS();
     }
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        var zoom = map.getZoom();
+        if (zoom <= 12) {
+            updatePathWidths({strokeWeight: 1});
+        }
+        else if (zoom <= 14) {
+            updatePathWidths({strokeWeight: 2});
+        }
+        else if (zoom <= 15) {
+            updatePathWidths({strokeWeight: 3});
+        }
+        else if (zoom <= 16) {
+            updatePathWidths({strokeWeight: 4});
+        }
+        else if (zoom <= 18) {
+            updatePathWidths({strokeWeight: 6});
+        }
+        else if (zoom <= 19) {
+            updatePathWidths({strokeWeight: 8});
+        }
+        else {
+            updatePathWidths({strokeWeight: 10});
+        }
+    });
+}
+
+function getInitialGPS() {
+    navigator.geolocation.getCurrentPosition(initialGPSSuccess(gpsAccuracy, gpsCenter), initialGPSError, gpsOptions);
+}
+
+function initialGPSSuccess(gpsAccuracy, gpsCenter) {
+    return function(pos) {
+        watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
+    }
+}
+
+function initialGPSError(error) {
+    setTimeout(function() {
+        getInitialGPS();
+    }, 5000);
+}
 
 function toggleMapItem(item, show) {
     if (show) {
@@ -326,7 +344,6 @@ function onGPSSuccess(gpsAccuracy, gpsCenter) {
         acc = parseInt(pos.coords.accuracy);
         lat = parseFloat(pos.coords.latitude);
         lng = parseFloat(pos.coords.longitude);
-        console.log("lat: " + lat + ", lng: " + lng + ", acc: " + acc);
         gpsAccuracy.setCenter(new google.maps.LatLng(lat, lng));
         gpsAccuracy.setRadius(acc);
         gpsCenter.setPosition(new google.maps.LatLng(lat, lng));
@@ -349,6 +366,9 @@ function onGPSError(gpsAccuracy, gpsCenter) {
             gpsAccuracy.setMap(null);
             gpsCenter.setMap(null);
             $("#goToGPS").css('display', 'none');
+            setTimeout(function() {
+                watchLocation = navigator.geolocation.watchPosition(onGPSSuccess(gpsAccuracy, gpsCenter), onGPSError, gpsOptions);
+            }, 5000);
         }
         else {
             consecutiveLocationFails += 1;
@@ -413,7 +433,6 @@ function toggleLockGPS() {
 }
 
 function goToGPS() {
-    console.log(gpsLocation);
     if (gpsLocation != null) {
         map.setCenter(gpsLocation);
     }
