@@ -209,7 +209,7 @@ var yellowPath;
 var greenPath;
 var brownPath;
 var overlayOn=true;
-var gpsOptions = { timeout: 20000 };
+var gpsOptions = { enableHighAccuracy: true, timeout: 10000 };
 var consecutiveLocationFails = 0;
 
 function initMap() {
