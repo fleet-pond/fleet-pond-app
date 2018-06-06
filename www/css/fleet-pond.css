@@ -77,24 +77,23 @@ h1, h2 {
         position: fixed;
     }
 }
-/* from the Fleet Pond website CSS */
+
 a:link, a:visited {
     color: #070;
     text-decoration: none;
 }
 
-/* from the Fleet Pond website CSS */
 body {
     font-family: "Open sans", arial, sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.6;
     color: #373737;
-    background-color: #f0fff0;
+    background-color: #eeeeee;
     position: relative;
     height: 100%;
 }
-/* end */
+
 .poi-image {
     width: 100%;
     object-fit: contain;
