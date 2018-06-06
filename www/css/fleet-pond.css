@@ -363,7 +363,7 @@ a {
     display:none;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (device-width: 768px) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (device-width: 768px) {
     #mapFrame div.gmnoprint[title="userLocation"] {
         margin: -11px 0 0 -11px;
     }
