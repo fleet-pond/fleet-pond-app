@@ -344,8 +344,21 @@ a {
         opacity: 0;
     }
 }
-
 @-webkit-keyframes pulsate {
+    from {
+        -webkit-transform: scale(0.35);
+        opacity: 1.0;
+    }
+    95% {
+        -webkit-transform: scale(1.5);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(0.4);
+        opacity: 0;
+    }
+}
+@keyframes pulsate {
     from {
         -webkit-transform: scale(0.35);
         opacity: 1.0;
@@ -363,6 +376,7 @@ a {
 #mapFrame div .gmnoprint[title="userLocation"] {
     -moz-animation: pulsate 1.5s ease-in-out infinite;
     -webkit-animation: pulsate 1.5s ease-in-out infinite;
+    animation: pulsate 1.5s ease-in-out infinite;
     border:1pt solid #fff;
 
     -moz-border-radius:51px;
