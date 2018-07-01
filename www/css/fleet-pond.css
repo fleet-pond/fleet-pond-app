@@ -196,7 +196,7 @@ body {
     padding: 2px 10px;
     border: 1px solid rgb(207, 207, 207);
     text-align: left;
-    bottom: 85px;
+    bottom: 82px;
     font-family: 'Roboto','sans-serif';
     line-height: 20px;
     font-size: 12px;
@@ -285,7 +285,6 @@ a {
     background: none;
     border: none;
     right: 0;
-    bottom: 202px;
     width:inherit;
 }
 #moveMap>button {

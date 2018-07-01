@@ -215,7 +215,13 @@ var consecutiveLocationFails = 0;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: initialCenter,
-        zoom: initialZoom
+        zoom: initialZoom,
+        zoomControl: false,
+        mapTypeControl: true,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false
     });
 
     bluePath = createPath(bluePathCoordinates, '#0000FF');
