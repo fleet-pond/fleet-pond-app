@@ -441,9 +441,11 @@ function resetMap() {
 }
 
 function toggleLockGPS() {
-    $('#lockGPSIcon').toggleClass('fa-lock-open');
-    $('#lockGPSIcon').toggleClass('fa-lock');
-    trackLocation = !trackLocation;
+    $("#goToGPS").toggleClass("activeButton");
+    trackLocation = $("#goToGPS").hasClass("activeButton");
+    if (trackLocation) {
+        goToGPS();
+    }
 }
 
 function goToGPS() {

@@ -109,6 +109,7 @@ body {
 }
 
 .card {
+    -moz-box-shadow: 3px 3px 4px 2px #BBB;
     -webkit-box-shadow: 3px 3px 4px 2px #BBB;
     box-shadow: 3px 3px 4px 2px #BBB;
     margin-bottom: 20px;
@@ -295,6 +296,14 @@ a {
     width: 30px;
     height: 30px;
     padding: 0;
+}
+
+#goToGPS.activeButton {
+    background: #cee4f6 !important;
+    border-color: #9ecaed;
+    -moz-box-shadow: 0 0 5px 5px #9ecaed;
+    -webkit-box-shadow: 0 0 5px 5px #9ecaed;
+    box-shadow: 0 0 5px 5px #9ecaed;
 }
 
 .gps-buttons {
