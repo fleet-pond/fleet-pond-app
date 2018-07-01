@@ -200,7 +200,6 @@ body {
     font-family: 'Roboto','sans-serif';
     line-height: 20px;
     font-size: 12px;
-    width: 110px;
 }
 
 .floating-panel span.title, #floating-panel1 span.title {
@@ -235,6 +234,7 @@ body {
     color: #000;
     font-size: 1.5em;
     padding-left: 35px;
+    padding-right: 15px;
 }
 
 .active {

@@ -25,7 +25,7 @@ var trails = {
 			"trail_colour" : "Green",
 			"color_hex" : "#080",
 			"length_KM" : "0.7",
-			"length_miles" : "2.4",
+			"length_miles" : "0.4",
 			"description" : "This alternate route guides you through Scots Pine woodland, giving you wonderful views of the heathland."
 		},
 		{
