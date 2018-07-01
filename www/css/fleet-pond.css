@@ -292,9 +292,10 @@ a {
     background: white;
     opacity: 1;
     border: solid 1px #ccc;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
     width: 30px;
     height: 30px;
+    padding: 0;
 }
 
 .gps-buttons {
