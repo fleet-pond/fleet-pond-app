@@ -4,9 +4,24 @@
 @import "{{ site.theme }}";
 
 html {
-  background-color: #fafafa
+  background-color: #fafafa;
 }
 
-header {
-  display: none;
+.page-header{
+  background: url(../images/banner.jpg) center no-repeat;
+}
+@media screen and (min-width: 64em){
+  .page-header{
+    padding: 190px 0;
+  }
+}
+@media screen and (min-width: 42em) and (max-width: 64em){
+  .page-header{
+    padding: 140px 0;
+  }
+}
+@media screen and (max-width: 42em){
+  .page-header{
+    padding: 120px 0;
+  }
 }
