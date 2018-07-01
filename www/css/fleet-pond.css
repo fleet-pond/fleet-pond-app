@@ -253,12 +253,12 @@ body {
 }
 
 .switch-poi {
-    width: 25%;
+    width: 20%;
 }
 
 #current-poi {
     text-align: center;
-    width: 50%;
+    width: 60%;
 }
 
 .text-right {
