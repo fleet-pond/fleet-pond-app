@@ -278,8 +278,6 @@ function initMap() {
                 anchor: new google.maps.Point(0, 0)
             }
         });
-
-        getInitialGPS();
     }
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
@@ -364,7 +362,6 @@ function toggleSelector() {
 
 function onGPSSuccess(gpsAccuracy, gpsCenter) {
     return function(pos) {
-        console.log("watch");
         console.log(pos);
         updateGPSMarkerPosition(gpsAccuracy, gpsCenter, pos);
     }
@@ -598,3 +595,5 @@ function centerMapImagePadding() {
     }
     $('#map-image').css('margin-top', newMarginTop);
 }
+
+document.addEventListener("deviceready", getInitialGPS, false);

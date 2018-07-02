@@ -29,14 +29,12 @@
         <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
         <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
         <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
-        <preference name="AutoHideSplashScreen" value="true" />
-        <preference name="SplashScreenDelay" value="10000" />
     </platform>
     <platform name="browser">
         <preference name="SplashScreen" value="/images/browser/splashscreen.jpg" />
-        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="SplashScreenDelay" value="0" />
         <preference name="SplashScreenBackgroundColor" value="green" />
-        <preference name="ShowSplashScreen" value="true" />
+        <preference name="ShowSplashScreen" value="false" />
         <preference name="SplashScreenWidth" value="450" />
         <preference name="SplashScreenHeight" value="563" />
     </platform>
@@ -61,7 +59,8 @@
         <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
         <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
     </platform>
-    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2500" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <engine name="android" spec="^7.1.0" />
