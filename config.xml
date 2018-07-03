@@ -62,7 +62,7 @@
         <icon height="50" src="res/icon/ios/icon-50.png" width="50" />
         <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
         <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
-        <icon height="1024" src="res/icons/ios/icon-1024.png" width="1024" />
+        <icon height="1024" src="res/icon/ios/icon-1024.png" width="1024" />
         <splash height="1334" src="res/screen/ios/screen-667h-portrait.png" width="750" />
         <splash height="1242" src="res/screen/ios/screen-736h-landscape.png" width="2208" />
         <splash height="2208" src="res/screen/ios/screen-736h-portrait.png" width="1242" />
