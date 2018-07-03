@@ -20,12 +20,13 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-geolocation": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android",
-      "browser"
+      "browser",
+      "ios"
     ]
   }
 }

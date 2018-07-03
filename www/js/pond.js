@@ -596,4 +596,11 @@ function centerMapImagePadding() {
     $('#map-image').css('margin-top', newMarginTop);
 }
 
-document.addEventListener("deviceready", getInitialGPS, false);
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    getInitialGPS();
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 5000);
+}

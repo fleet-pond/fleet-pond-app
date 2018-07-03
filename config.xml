@@ -33,14 +33,15 @@
         <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
         <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
         <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+        <preference name="AutoHideSplashScreen" value="true" />
+        <preference name="SplashScreenDelay" value="10000" />
     </platform>
     <platform name="browser">
         <preference name="SplashScreen" value="/images/browser/splashscreen.jpg" />
-        <preference name="SplashScreenDelay" value="0" />
-        <preference name="SplashScreenBackgroundColor" value="green" />
+        <preference name="SplashScreenBackgroundColor" value="black" />
         <preference name="ShowSplashScreen" value="false" />
-        <preference name="SplashScreenWidth" value="450" />
-        <preference name="SplashScreenHeight" value="563" />
+        <preference name="SplashScreenWidth" value="2765" />
+        <preference name="SplashScreenHeight" value="2746" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -63,6 +64,8 @@
         <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
         <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
         <icon height="1024" src="res/icon/ios/icon-1024.png" width="1024" />
+        <preference name="AutoHideSplashScreen" value="false" />
+        <preference name="SplashScreenDelay" value="5000" />
         <splash height="1334" src="res/screen/ios/screen-667h-portrait.png" width="750" />
         <splash height="1242" src="res/screen/ios/screen-736h-landscape.png" width="2208" />
         <splash height="2208" src="res/screen/ios/screen-736h-portrait.png" width="1242" />
@@ -78,10 +81,9 @@
         <splash height="1136" src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
         <splash height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
     </platform>
-    <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreenDelay" value="5000" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <engine name="android" spec="^7.1.0" />
     <engine name="browser" spec="^5.0.3" />
+    <engine name="ios" spec="^4.5.4" />
 </widget>
