@@ -599,8 +599,8 @@ function centerMapImagePadding() {
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    getInitialGPS();
     setTimeout(function() {
         navigator.splashscreen.hide();
+        getInitialGPS();
     }, 5000);
 }

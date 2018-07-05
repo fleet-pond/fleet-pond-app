@@ -401,3 +401,39 @@ a {
         margin: -11px 0 0 -11px;
     }
 }
+
+/* Iphone X / notchy phones */
+body{
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    height: 0;
+    width: 100%;
+    background: black;
+    z-index: 9999;
+}
+
+@media all and (orientation: portrait) {
+    header {
+        height: env(safe-area-inset-top);
+    }
+    .navbar {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .floating-panel {
+        bottom: calc(82px + env(safe-area-inset-bottom));
+    }
+
+    .tab-pane {
+        padding-bottom: calc(82px + env(safe-area-inset-bottom));
+    }
+
+    #mapFrame {
+        height: calc(100vh - env(safe-area-inset-top));
+        top: env(safe-area-inset-top);
+    }
+}
