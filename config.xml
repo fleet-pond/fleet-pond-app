@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.fleetpond" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.fleetpond" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Fleet Pond</name>
     <description>
         Fleet Pond is the largest freshwater lake in Hampshire. The nature reserve has 141 acres (57ha) of varied habitats including heathland, woodland, reedbed and marsh, and is home for many species of birds, butterflies, dragonflies and wild flowers.
@@ -53,6 +53,7 @@
         <icon height="152" src="res/icon/ios/icon-76@2x.png" width="152" />
         <icon height="40" src="res/icon/ios/icon-40.png" width="40" />
         <icon height="80" src="res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="120" src="res/icon/ios/icon-40@3x.png" width="120" />
         <icon height="57" src="res/icon/ios/icon-57.png" width="57" />
         <icon height="114" src="res/icon/ios/icon-57@2x.png" width="114" />
         <icon height="72" src="res/icon/ios/icon-72.png" width="72" />
@@ -60,6 +61,7 @@
         <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
         <icon height="29" src="res/icon/ios/icon-small.png" width="29" />
         <icon height="58" src="res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/icon/ios/icon-small@3x.png" width="87" />
         <icon height="50" src="res/icon/ios/icon-50.png" width="50" />
         <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
         <icon height="167" src="res/icon/ios/icon-83.5@2x.png" width="167" />
