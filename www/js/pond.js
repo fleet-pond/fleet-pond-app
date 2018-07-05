@@ -433,6 +433,9 @@ function clickMarker(marker) {
 }
 
 function resetMap() {
+    if (trackLocation) {
+        toggleLockGPS();
+    }
     map.setCenter(initialCenter);
     map.setZoom(initialZoom);
 }
