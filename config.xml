@@ -83,13 +83,13 @@
         <splash height="1136" src="res/screen/ios/screen-iphone-portrait-568h-2x.png" width="640" />
         <splash height="480" src="res/screen/ios/screen-iphone-portrait.png" width="320" />
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysUsageDescription">
-            <string>To show your location on the map (on your device only).</string>
+            <string>To show your location on the map. (your device only)</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationUsageDescription">
-            <string>To show your location on the map (on your device only).</string>
+            <string>To show your location on the map. (your device only)</string>
         </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-            <string>To show your location on the map (on your device only).</string>
+            <string>To show your location on the map. (your device only)</string>
         </edit-config>
     </platform>
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
