@@ -1,12 +1,12 @@
 # Fleet Pond - Companion App
 
-[Home](./index.html) &nbsp; [Help Guide](./help.html) &nbsp; [FAQ](./faq.html) &nbsp; [Fleet Pond website](http://fleetpond.org.uk/)
+[Home](./index.html) &nbsp; &nbsp; [Help Guide](./help.html) &nbsp; &nbsp; [FAQ](./faq.html) &nbsp; &nbsp; [Fleet Pond website](http://fleetpond.org.uk/)
 
 ## Home
 
 The Fleet pond companion app allows you to plan a walk around the pond, track your location and find out more information about the trails and points of interest at the pond.
 
-The app is in the process of being released on the iOS App Store and has been released on the [Google Play Store](https://play.google.com/store/apps/details?id=org.fleetpond).
+The app has been released on the [Apple iOS App Store]() and [Google Play Store](https://play.google.com/store/apps/details?id=org.fleetpond).
 
 For more information about how to use the application you can visit our [help guide](./help.html).
 
