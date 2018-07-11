@@ -46,7 +46,7 @@ A: We collected / created the following for the Fleet Pond app:
 
 **Q: How did you collect the route data?**
 
-A: Walks around Fleet Pond were tracked using the Fitbit phone app (free to use, available on Andoid, iOS and Windows Phone). The data can then be exported from Fitbit on their website, which can then be converted to the format used in the Fleet Pond app.
+A: Walks around Fleet Pond were tracked using the Fitbit phone app (free to use, available on Android, iOS and Windows Phone). The data can then be exported from Fitbit on their website, which can then be converted to the format used in the Fleet Pond app.
 
 **Q: How do I change the content for my app?**
 
@@ -65,7 +65,7 @@ A: You should fork the Fleet Pond app [repository](https://github.com/fleet-pond
 
 A: You can create the release files using Cordova on the computer that you develop the app on. They will then need to be uploaded to the stores that you want to release to.
 
-To release to the Android Play Store you will need use the [Google Play Console](https://developer.android.com/distribute/console/). It currently has a one time cost of $25 to create an account on which you can release multiple apps.
+To release to the Google Play Store you will need use the [Google Play Console](https://developer.android.com/distribute/console/). It currently has a one time cost of $25 to create an account on which you can release multiple apps.
 
 To release to the Apple App Store you will need to use [Itunes Connect](https://itunesconnect.apple.com/). It currently costs $99 annually to create an account on which you can release multiple apps.
 
@@ -73,7 +73,7 @@ From those sites you can manage all aspects of the release of your app to each s
 
 **Q: Can you host my app for me so I don't have to pay the fee?**
 
-A: Unfortunatly not, this is against the Apple Store Guidelines and would get the application rejected upon review.
+A: Unfortunately not, this is against the Apple Store Guidelines and would get the application rejected upon review.
 
 **Q: I need help, can you make my new app for me?**
 

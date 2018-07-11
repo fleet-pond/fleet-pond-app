@@ -6,7 +6,7 @@
 
 This page will provide you will all the information you need to make full use of the Fleet Pond - Companion App.
 
-![Screenshot of the splashscreen][screenshotSplash]
+![Screenshot of the splash screen][screenshotSplash]
 
 ### Map
 
@@ -32,7 +32,7 @@ The blue markers show the location of benches.
 
 ![Location marker][markerLocation]
 
-If you allow the app to use your location, it will be shown with a blue dot with pulsating rings. The persistant ring shows how accurate your location reading is.
+If you allow the app to use your location, it will be shown with a blue dot with pulsating rings. The persistent ring shows how accurate your location reading is.
 
 **Your location is only used locally on your device, and is not stored anywhere.**
 
@@ -42,7 +42,7 @@ There are two buttons available in the bottom right of the screen.
 
 ![Location button][buttonLocation]
 
-The location button, only shown if your gps location is available, will lock the map to your location keeping your position centred on the map. The button will glow blue when locked to your location, tap the button again to disable the location lock. The map will only be centered to your location while you have an accurate reading.
+The location button, only shown if your gps location is available, will lock the map to your location keeping your position centred on the map. The button will glow blue when locked to your location, tap the button again to disable the location lock. The map will only be centred to your location while you have an accurate reading.
 
 ![Map button][buttonMap]
 
@@ -81,7 +81,7 @@ The points of interest tab shows you details about all of the different interest
 
 ![Screenshot of points of interest tab][screenshotPOIs]
 
-There is a card for each point of interest at Fleet Pond. Each card contains the interest name, the start of the descrition, and a picture of the interest or the view that can be seen from the interest. The card also contains icons to show which trails can be used to access the point of interest.
+There is a card for each point of interest at Fleet Pond. Each card contains the interest name, the start of the description, and a picture of the interest or the view that can be seen from the interest. The card also contains icons to show which trails can be used to access the point of interest.
 
 Clicking anywhere on the card will take you to the point of interest page, described below.
 
@@ -91,7 +91,7 @@ The point of interest page shows you details about a single point of interest.
 
 ![Screenshot of a point of interest][screenshotPOI]
 
-The point of interest name is displayed with a photo below. Some points of interst have multiple photos that will automatically rotate, you can use the chevrons on the left and right of the image to manually change the image.
+The point of interest name is displayed with a photo below. Some points of interest have multiple photos that will automatically rotate, you can use the chevrons on the left and right of the image to manually change the image.
 
 Below the image there is a card that shows other details about the point of interest. The "View on map" link will go to the map tab and select the point of interest, showing you where it is on the map. The coloured icons show which routes can be used to access this point of interest, and below that is the point of interest description.
 
@@ -115,7 +115,7 @@ The info tab gives you general details about the pond.
 
 ![Screenshot of info tab][screenshotInfo]
 
-Available on the info tab is lots of additional links and details about the pond, this includes donatiion link, contact information and a link to the Fleet Pond Society website.
+Available on the info tab is lots of additional links and details about the pond, this includes donation link, contact information and a link to the Fleet Pond Society website.
 
 [buttonLocation]: ./assets/images/help/buttonLocation.png
 [buttonMap]: ./assets/images/help/buttonMap.png
