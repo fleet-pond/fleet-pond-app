@@ -52,7 +52,6 @@ The map button centres you back onto the pond, resetting to the default map view
 
 The content of the map can be shown / hidden using the key on the left. The available map content:
 
-* **Overlay** - A map overlay that shows place names, landforms, and the routes available to walk at the pond.
 * **Interests** - The red markers on the map that show the locations of the points of interests.
 * **Benches** - The blue markers on the map that show the locations of the benches around the pond.
 * **Routes** - Each route can be individually hidden from the map.
@@ -101,13 +100,11 @@ The double left chevron (<<) will take you back to the previous page (either the
 
 ### Gallery
 
-The gallery tab shows you details about the current photo competition and a gallery of photos from the previous photo competition.
+The gallery tab shows you a selection of photos captured by the members of the Fleet Pond Society.
 
 ![Screenshot of gallery tab][screenshotGallery]
 
-Click the links to visit pages with more information about the photo competitions.
-
-View the images from previous photo competitions with as a slideshow or a list using the button at the bottom of the text.
+Images can be viewed as a slideshow or as a list using the button at the bottom of the text.
 
 ### Info
 
