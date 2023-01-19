@@ -77,8 +77,8 @@ A: Unfortunately not, this is against the Apple Store Guidelines and would get t
 
 **Q: I need help, can you make my new app for me?**
 
-A: For queries you can reach out to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but due to the time commitment required we will not be able to write your app for you. If you want more significant help contact [matt@weeks.codes](mailto:matt@weeks.codes) who was on the team that developed the Fleet Pond App.
+A: For queries you can reach out to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but due to the time commitment required we will not be able to write your app for you.
 
 **Q: I want features that are not currently available in the app, can you add them?**
 
-A: Please email us your suggestions to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but we can't promise we will have time to implement them, if it is a repeated suggestion we will try. If you want help implementing something for your app you can also contact [matt@weeks.codes](mailto:matt@weeks.codes) who was on the team that developed the Fleet Pond App.
+A: Please email us your suggestions to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but we can't promise we will have time to implement them, if it is a repeated suggestion we will try.

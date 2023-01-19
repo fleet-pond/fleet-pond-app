@@ -92,8 +92,7 @@ $(function() {
 function updateGalleryContent() {
     var slideshowSelector = '<br/><br/><div class="text-center"><button type="button" class="btn btn-success" id="galleryButton" onclick="toggleGallery()">View images as list</button></div>';
     var galleryDiv = '<div id="galleryPictures">' + gallerySliderHTML + '</div>'
-    var galleryContent = '<h1>Gallery</h1>' + cardStart + galleryCurrentText + cardEnd +
-    cardStart + galleryNextText + slideshowSelector + cardEnd + galleryDiv;
+    var galleryContent = '<h1>Gallery</h1>' + cardStart + galleryCurrentText + slideshowSelector + cardEnd + galleryDiv;
     $('#gallery').html(galleryContent);
 }
 
