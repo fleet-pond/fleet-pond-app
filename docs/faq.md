@@ -6,7 +6,7 @@ _**WARNING: We plan to change the way that the app data is stored for the app, h
 
 ## F.A.Q.
 
-If you have questions that are not covered below you can reach out to us at [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com).
+If you have questions that are not covered below you can reach out to us at [editor@fleetpondapp.org.uk](mailto:editor@fleetpondapp.org.uk).
 
 **Q: What hardware do I need to create an app like this for my park / pond / nature reserve?**
 
@@ -77,8 +77,8 @@ A: Unfortunately not, this is against the Apple Store Guidelines and would get t
 
 **Q: I need help, can you make my new app for me?**
 
-A: For queries you can reach out to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but due to the time commitment required we will not be able to write your app for you.
+A: For queries you can reach out to [editor@fleetpondapp.org.uk](mailto:editor@fleetpondapp.org.uk) but due to the time commitment required we will not be able to write your app for you.
 
 **Q: I want features that are not currently available in the app, can you add them?**
 
-A: Please email us your suggestions to [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com) but we can't promise we will have time to implement them, if it is a repeated suggestion we will try.
+A: Please email us your suggestions to [editor@fleetpondapp.org.uk](mailto:editor@fleetpondapp.org.uk) but we can't promise we will have time to implement them, if it is a repeated suggestion we will try.

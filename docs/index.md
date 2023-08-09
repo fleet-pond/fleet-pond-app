@@ -12,4 +12,4 @@ For more information about how to use the application you can visit our [help gu
 
 For other details about the app and how it was made visit our [FAQ](./faq.html).
 
-If you have further questions you can reach out to us at [enquiries.fleetpondapp@gmail.com](mailto:enquiries.fleetpondapp@gmail.com)
+If you have further questions you can reach out to us at [editor@fleetpondapp.org.uk](mailto:editor@fleetpondapp.org.uk)
