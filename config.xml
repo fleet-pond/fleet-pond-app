@@ -25,7 +25,7 @@
         <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
         <icon density="xxhdpi" src="res/icon/android/icon-144-xxhdpi.png" />
         <icon density="xxxhdpi" src="res/icon/android/icon-192-xxxhdpi.png" />
-        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/icon/icon.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splash.png" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="SplashScreenDelay" value="10000" />
     </platform>
